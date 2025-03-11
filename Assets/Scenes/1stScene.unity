@@ -133,7 +133,8 @@ Material:
   m_ValidKeywords:
   - EFFECT_BUMP
   - GEOM_TYPE_LEAF
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - ENABLE_WIND
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -179,7 +180,8 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - GEOM_TYPE_BRANCH
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - ENABLE_WIND
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -2038,8 +2040,8 @@ MonoBehaviour:
       helperStructureLevelId: 7
       shaperOffset: 0
       _position: 0.23412834
-      parentOffset: {x: -0.063669235, y: -0.025853885, z: -0.028232459}
-      originOffset: {x: -0.45802128, y: 4.199299, z: 0.68450034}
+      parentOffset: {x: -0.025504448, y: 0.027767746, z: -0.0022633004}
+      originOffset: {x: 0.44275224, y: 3.6620343, z: 1.3162154}
       _maxGirth: 0.2968
       _minGirth: 0.028
       girthCurve:
@@ -2137,8 +2139,8 @@ MonoBehaviour:
       helperStructureLevelId: 7
       shaperOffset: 0
       _position: 0.16280374
-      parentOffset: {x: 0.011624057, y: 0.010092793, z: 0.053083688}
-      originOffset: {x: -0.26621157, y: 3.9107718, z: 0.80414844}
+      parentOffset: {x: -0.0020991908, y: -0.042496126, z: 0.044595324}
+      originOffset: {x: 0.32350826, y: 3.4491212, z: 1.2204248}
       _maxGirth: 0.2968
       _minGirth: 0.028
       girthCurve:
@@ -2236,8 +2238,8 @@ MonoBehaviour:
       helperStructureLevelId: 7
       shaperOffset: 0
       _position: 0.09147913
-      parentOffset: {x: 0.024547251, y: 0.004272274, z: -0.06430276}
-      originOffset: {x: -0.13514175, y: 3.5814178, z: 0.7278525}
+      parentOffset: {x: 0.041516088, y: 0.02046297, z: -0.061979067}
+      originOffset: {x: 0.22447437, y: 3.3694313, z: 0.9712012}
       _maxGirth: 0.2968
       _minGirth: 0.028
       girthCurve:
@@ -2335,8 +2337,8 @@ MonoBehaviour:
       helperStructureLevelId: 4
       shaperOffset: 0
       _position: 0.053860974
-      parentOffset: {x: 0.08204546, y: 0.020283476, z: -0.07006197}
-      originOffset: {x: 0.11214604, y: 0.18325351, z: -0.002183549}
+      parentOffset: {x: 0.118004575, y: -0.011174546, z: -0.10683004}
+      originOffset: {x: 0.22572652, y: 0.0965474, z: 0.000891909}
       _maxGirth: 0.5936
       _minGirth: 0.028
       girthCurve:
@@ -2434,8 +2436,8 @@ MonoBehaviour:
       helperStructureLevelId: 4
       shaperOffset: 0
       _position: 0.043809503
-      parentOffset: {x: 0.11499574, y: -0.043104194, z: 0.093666874}
-      originOffset: {x: 0.14262578, y: 0.08905963, z: 0.14885697}
+      parentOffset: {x: 0.06071161, y: -0.107218586, z: 0.04650697}
+      originOffset: {x: 0.14833061, y: -0.01959958, z: 0.13412598}
       _maxGirth: 0.5936
       _minGirth: 0.028
       girthCurve:
@@ -2533,8 +2535,8 @@ MonoBehaviour:
       helperStructureLevelId: 4
       shaperOffset: 0
       _position: 0.027113896
-      parentOffset: {x: -0.083808824, y: 0.037297893, z: -0.07473391}
-      originOffset: {x: -0.060841255, y: 0.11847857, z: -0.04092114}
+      parentOffset: {x: -0.030102564, y: 0.061959915, z: -0.031857353}
+      originOffset: {x: 0.024125228, y: 0.11618771, z: 0.022370439}
       _maxGirth: 0.5936
       _minGirth: 0.028
       girthCurve:
@@ -2929,8 +2931,8 @@ MonoBehaviour:
       helperStructureLevelId: 4
       shaperOffset: 0
       _position: 0.052770704
-      parentOffset: {x: -0.057210952, y: 0.009073077, z: -0.08887556}
-      originOffset: {x: -0.018792983, y: 0.32052022, z: -0.082061656}
+      parentOffset: {x: 0.0013731641, y: -0.0038243283, z: 0.0024511646}
+      originOffset: {x: 0.10691457, y: 0.10171708, z: 0.107992575}
       _maxGirth: 0.5936
       _minGirth: 0.028
       girthCurve:
@@ -3028,8 +3030,8 @@ MonoBehaviour:
       helperStructureLevelId: 4
       shaperOffset: 0
       _position: 0.017918756
-      parentOffset: {x: 0.10271825, y: -0.014541419, z: -0.08878202}
-      originOffset: {x: 0.116119176, y: 0.09118481, z: -0.0865502}
+      parentOffset: {x: 0.11682165, y: -0.0096829, z: -0.10713876}
+      originOffset: {x: 0.15265916, y: 0.026154611, z: -0.07130125}
       _maxGirth: 0.5936
       _minGirth: 0.028
       girthCurve:
@@ -3127,8 +3129,8 @@ MonoBehaviour:
       helperStructureLevelId: 4
       shaperOffset: 0
       _position: 0.016136507
-      parentOffset: {x: 0.110340975, y: -0.017746508, z: 0.089929156}
-      originOffset: {x: 0.12249217, y: 0.077453956, z: 0.091733575}
+      parentOffset: {x: 0.06489037, y: -0.11130984, z: 0.046419475}
+      originOffset: {x: 0.09716338, y: -0.07903683, z: 0.07869249}
       _maxGirth: 0.5936
       _minGirth: 0.028
       girthCurve:
@@ -3523,8 +3525,8 @@ MonoBehaviour:
       helperStructureLevelId: 4
       shaperOffset: 0
       _position: 0.05187154
-      parentOffset: {x: 0.08826917, y: 0.012785396, z: -0.08960706}
-      originOffset: {x: 0.022748709, y: 0.33765128, z: -0.07979985}
+      parentOffset: {x: 0.12206256, y: 0.0019066356, z: -0.12396922}
+      originOffset: {x: 0.22580564, y: 0.10564971, z: -0.020226143}
       _maxGirth: 0.5936
       _minGirth: 0.028
       girthCurve:
@@ -3622,8 +3624,8 @@ MonoBehaviour:
       helperStructureLevelId: 4
       shaperOffset: 0
       _position: 0.045758888
-      parentOffset: {x: 0.09042965, y: 0.011794219, z: 0.10191527}
-      originOffset: {x: 0.030458827, y: 0.29793498, z: 0.11243748}
+      parentOffset: {x: 0.04942323, y: -0.11452081, z: 0.0650976}
+      originOffset: {x: 0.14094101, y: -0.023003034, z: 0.15661538}
       _maxGirth: 0.5936
       _minGirth: 0.028
       girthCurve:
@@ -3721,8 +3723,8 @@ MonoBehaviour:
       helperStructureLevelId: 4
       shaperOffset: 0
       _position: 0.032270443
-      parentOffset: {x: -0.105782725, y: -0.016797565, z: -0.09804623}
-      originOffset: {x: -0.15189846, y: 0.18420771, z: -0.087240376}
+      parentOffset: {x: -0.026854085, y: 0.047128953, z: -0.020274876}
+      originOffset: {x: 0.037686802, y: 0.11166984, z: 0.044266008}
       _maxGirth: 0.5936
       _minGirth: 0.028
       girthCurve:
@@ -4117,8 +4119,8 @@ MonoBehaviour:
       helperStructureLevelId: 7
       shaperOffset: 0
       _position: 0.23412834
-      parentOffset: {x: 0.0037004417, y: 0.012824617, z: 0.050789468}
-      originOffset: {x: 3.3466153, y: 7.3027525, z: -4.0577226}
+      parentOffset: {x: -0.0030205525, y: -0.050487682, z: 0.053508244}
+      originOffset: {x: 2.5912213, y: 7.3113976, z: -2.977689}
       _maxGirth: 0.2968
       _minGirth: 0.028
       girthCurve:
@@ -4216,8 +4218,8 @@ MonoBehaviour:
       helperStructureLevelId: 7
       shaperOffset: 0
       _position: 0.16280374
-      parentOffset: {x: 0.02777691, y: -0.085691705, z: -0.0056269593}
-      originOffset: {x: 3.0283506, y: 6.994178, z: -3.9427872}
+      parentOffset: {x: 0.05126509, y: -0.017649395, z: -0.0336157}
+      originOffset: {x: 2.5028577, y: 7.2015867, z: -3.207462}
       _maxGirth: 0.2968
       _minGirth: 0.028
       girthCurve:
@@ -4315,8 +4317,8 @@ MonoBehaviour:
       helperStructureLevelId: 7
       shaperOffset: 0
       _position: 0.09147913
-      parentOffset: {x: -0.019515093, y: -0.027334746, z: -0.066207476}
-      originOffset: {x: 2.608759, y: 6.943558, z: -3.802185}
+      parentOffset: {x: 0.0029637697, y: 0.025159648, z: -0.028123422}
+      originOffset: {x: 2.3119073, y: 7.1017466, z: -3.344619}
       _maxGirth: 0.2968
       _minGirth: 0.028
       girthCurve:
@@ -4414,8 +4416,8 @@ MonoBehaviour:
       helperStructureLevelId: 4
       shaperOffset: 0
       _position: 0.057044577
-      parentOffset: {x: 0.07003152, y: 0.024827067, z: 0.059151202}
-      originOffset: {x: 0.0842324, y: 0.47354266, z: -0.10117163}
+      parentOffset: {x: 0.026088592, y: -0.052216575, z: 0.026127983}
+      originOffset: {x: 0.14017774, y: 0.06187258, z: 0.14021714}
       _maxGirth: 0.5936
       _minGirth: 0.028
       girthCurve:
@@ -4513,8 +4515,8 @@ MonoBehaviour:
       helperStructureLevelId: 4
       shaperOffset: 0
       _position: 0.04830396
-      parentOffset: {x: 0.093172595, y: -0.044562217, z: -0.09401322}
-      originOffset: {x: 0.10383559, y: 0.33512175, z: -0.23059428}
+      parentOffset: {x: 0.10980449, y: 0.0020892299, z: -0.11189373}
+      originOffset: {x: 0.2064124, y: 0.098697156, z: -0.015285805}
       _maxGirth: 0.5936
       _minGirth: 0.028
       girthCurve:
@@ -4612,8 +4614,8 @@ MonoBehaviour:
       helperStructureLevelId: 4
       shaperOffset: 0
       _position: 0.032957148
-      parentOffset: {x: -0.10370945, y: -0.031669088, z: -0.09890519}
-      originOffset: {x: -0.098426394, y: 0.22669873, z: -0.19401717}
+      parentOffset: {x: -0.008696315, y: 0.017088614, z: -0.008392301}
+      originOffset: {x: 0.05721798, y: 0.08300291, z: 0.057521995}
       _maxGirth: 0.5936
       _minGirth: 0.028
       girthCurve:
@@ -5274,6 +5276,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &332189626
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7.359752
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7.359752
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 7.359752
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.6725
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.6331
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5828706
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000022002753
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.812565
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000030673473
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -108.695
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
+      propertyPath: m_Name
+      value: Snowy path mc
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 96c2aaa9c9244f642a03551911a3efbf, type: 3}
 --- !u!1001 &338795651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6905,7 +6976,7 @@ MonoBehaviour:
   _localPipeline: {fileID: 633160375}
   lastUndoProcessed: 262
   prefabPath: 
-  _instanceId: -2462
+  _instanceId: 51956
 --- !u!4 &1373264360
 Transform:
   m_ObjectHideFlags: 0
@@ -6936,7 +7007,8 @@ Material:
   m_ValidKeywords:
   - EFFECT_BUMP
   - GEOM_TYPE_LEAF
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - ENABLE_WIND
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -7447,3 +7519,4 @@ SceneRoots:
   - {fileID: 444010097}
   - {fileID: 338795651}
   - {fileID: 1373264360}
+  - {fileID: 332189626}
