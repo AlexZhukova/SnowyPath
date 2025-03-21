@@ -83,10 +83,7 @@ public class PlayerController : MonoBehaviour
         pitch = Mathf.Clamp(pitch, -90f, 90f);
         playerCamera.transform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
 
-        if (Input.GetKey(KeyCode.W)) Debug.Log("W key pressed");
-        if (Input.GetKey(KeyCode.A)) Debug.Log("A key pressed");
-        if (Input.GetKey(KeyCode.S)) Debug.Log("S key pressed");
-        if (Input.GetKey(KeyCode.D)) Debug.Log("D key pressed");
+       
     }
 
     private void ToggleCrouch()
