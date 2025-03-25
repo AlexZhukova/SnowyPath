@@ -14,17 +14,18 @@ public class CompanionAnimationController : MonoBehaviour
 
     void Update()
     {
-        // Get the companion's current speed
-        float speed = agent.velocity.magnitude;
+        // Get the current speed of the NavMeshAgent
+        float Speed = agent.velocity.magnitude;
 
-        // If moving, play walking animation, otherwise play idle
-        if (speed > 0.1f) // Companion is moving
+        if (Speed < 0.1f)
         {
-            animator.SetBool("isWalking", true);
+            // Idle animation
+            animator.SetFloat("Speed", 0);
         }
-        else // Companion is idle
+        else
         {
-            animator.SetBool("isWalking", false);
+            // Walking animation
+            animator.SetFloat("Speed", 1);
         }
     }
 }
