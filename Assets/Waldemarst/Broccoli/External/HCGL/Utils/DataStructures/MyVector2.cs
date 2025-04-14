@@ -64,7 +64,7 @@ namespace Broccoli.HCGL
 
             //If all of the differences are around 0
             if (
-                xDiff < e && xDiff > -e && 
+                xDiff < e && xDiff > -e &&
                 yDiff < e && yDiff > -e)
             {
                 return true;

@@ -14,7 +14,7 @@ namespace Broccoli.HCGL
         Outside, On, Inside
     }
 
-    
+
 
     public static class _Geometry
     {
@@ -83,7 +83,7 @@ namespace Broccoli.HCGL
             toCircumsphereCenter += MyVector3.Cross(ac, abXac) * Mathf.Pow(MyVector3.Magnitude(ab), 2f);
 
             toCircumsphereCenter *= (1f / (2f * Mathf.Pow(MyVector3.Magnitude(abXac), 2f)));
-            
+
             float circumsphereRadius = MyVector3.Magnitude(toCircumsphereCenter);
 
             //The circumsphere center becomes
@@ -220,7 +220,7 @@ namespace Broccoli.HCGL
 
         //3d
         //Outside means in the planes normal direction
-        public static bool IsPointOutsidePlane(MyVector3 pointPos, Plane3 plane) 
+        public static bool IsPointOutsidePlane(MyVector3 pointPos, Plane3 plane)
         {
             float distance = GetSignedDistanceFromPointToPlane(pointPos, plane);
 
@@ -377,7 +377,7 @@ namespace Broccoli.HCGL
 
             //This point may not be on the line segment, if so return one of the end points
             float epsilon = MathUtility.EPSILON;
-            
+
             if (withinSegment && distance < 0f - epsilon)
             {
                 return a;
@@ -463,7 +463,7 @@ namespace Broccoli.HCGL
 
             MyVector2 t_T = new MyVector2(circleCenter.x, t_B.y + triangleHeight);
 
-            
+
             //The final triangle
             Triangle2 superTriangle = new Triangle2(t_BR, t_BL, t_T);
 

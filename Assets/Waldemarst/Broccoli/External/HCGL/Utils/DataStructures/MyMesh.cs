@@ -28,7 +28,7 @@ namespace Broccoli.HCGL
         public MyMesh(string meshName = null)
         {
             this.meshName = meshName;
-        
+
             vertices = new List<MyVector3>();
             normals = new List<MyVector3>();
             triangles = new List<int>();
@@ -76,7 +76,7 @@ namespace Broccoli.HCGL
                 for (int i = 0; i < vertices.Count; i++)
                 {
                     MyVector3 thisPos = vertices[i];
-                   
+
                     if (thisPos.Equals(v.position))
                     {
                         //Here we have to compare both position and normal or we can't get hard edges in combination with soft edges
@@ -88,7 +88,7 @@ namespace Broccoli.HCGL
 
                             return vertexPosInList;
                         }
-                        
+
                         //Sometimes we dont have a normal to compare
                         if (meshStyle == MeshStyle.SoftEdges)
                         {
@@ -140,7 +140,7 @@ namespace Broccoli.HCGL
         public void MergeMesh(MyMesh otherMesh)
         {
             int numberOfVerticesBeforeMerge = vertices.Count;
-        
+
             vertices.AddRange(otherMesh.vertices);
             normals.AddRange(otherMesh.normals);
 
@@ -149,9 +149,9 @@ namespace Broccoli.HCGL
 
             triangles.AddRange(newTriangles);
         }
-        
-        
-        
+
+
+
         //Convert this mesh to a unity mesh
         public Mesh ConvertToUnityMesh(bool generateNormals, string meshName = null)
         {
@@ -159,7 +159,7 @@ namespace Broccoli.HCGL
 
             //MyVector3 to Vector3
             Vector3[] vertices_Unity = vertices.Select(x => MyVector3.ToVector3(x)).ToArray();
-          
+
             mesh.vertices = vertices_Unity;
 
             mesh.SetTriangles(triangles, 0);
@@ -189,7 +189,7 @@ namespace Broccoli.HCGL
                 }
             }
 
-            
+
 
             mesh.RecalculateBounds();
 

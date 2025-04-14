@@ -15,41 +15,52 @@ namespace Broccoli.HCGL
         /// <param name="polyA">Points for the polygon A.</param>
         /// <param name="polyB">Points for the polygon B.</param>
         /// <returns>List of the combines polygons.</returns>
-        public static List<Vector3> CombinePolygonsYZ (List<Vector3> polyA, List<Vector3> polyB) {
-            List<Vector3> combinedPoly = new List<Vector3> ();
+        public static List<Vector3> CombinePolygonsYZ(List<Vector3> polyA, List<Vector3> polyB)
+        {
+            List<Vector3> combinedPoly = new List<Vector3>();
 
-            List<MyVector2> myPolyA = new List<MyVector2> ();
-            List<MyVector2> myPolyB = new List<MyVector2> ();
+            List<MyVector2> myPolyA = new List<MyVector2>();
+            List<MyVector2> myPolyB = new List<MyVector2>();
             MyVector2 myVec2;
-            for (int i = 0; i < polyA.Count; i++) {
-                myVec2 = new MyVector2 (polyA [i].z, polyA [i].y);
+            for (int i = 0; i < polyA.Count; i++)
+            {
+                myVec2 = new MyVector2(polyA[i].z, polyA[i].y);
                 myVec2.index = i;
                 myVec2.polygon = 0;
-                myPolyA.Add (myVec2);
+                myPolyA.Add(myVec2);
             }
-            for (int i = 0; i < polyB.Count; i++) {
-                myVec2 = new MyVector2 (polyB [i].z, polyB [i].y);
+            for (int i = 0; i < polyB.Count; i++)
+            {
+                myVec2 = new MyVector2(polyB[i].z, polyB[i].y);
                 myVec2.index = i;
                 myVec2.polygon = 1;
-                myPolyB.Add (myVec2);
+                myPolyB.Add(myVec2);
             }
 
-            List<List<MyVector2>> myCombinedPoly = ClipPolygons (myPolyA, myPolyB, BooleanOperation.Union);
+            List<List<MyVector2>> myCombinedPoly = ClipPolygons(myPolyA, myPolyB, BooleanOperation.Union);
             //List<List<MyVector2>> myCombinedPoly = SutherlandHodgmanModified.BooleanOperations (myPolyA, myPolyB, BooleanOperation.Union);
-            if (myCombinedPoly.Count >= 1) {
+            if (myCombinedPoly.Count >= 1)
+            {
                 float xPos = 0f;
-                for (int j = 0; j < myCombinedPoly.Count; j++) {
+                for (int j = 0; j < myCombinedPoly.Count; j++)
+                {
                     //int j = 6;
-                    for (int i = 0; i < myCombinedPoly[j].Count; i++) {
+                    for (int i = 0; i < myCombinedPoly[j].Count; i++)
+                    {
                         myVec2 = myCombinedPoly[j][i];
-                        if (myVec2.polygon == 0) {
-                            combinedPoly.Add (polyA [myVec2.index]);
-                            xPos = polyA [myVec2.index].x;
-                        } else if (myVec2.polygon == 1) {
-                            combinedPoly.Add (polyB [myVec2.index]);
-                            xPos = polyB [myVec2.index].x;
-                        } else {
-                            combinedPoly.Add (new Vector3 (xPos, myVec2.y, myVec2.x));
+                        if (myVec2.polygon == 0)
+                        {
+                            combinedPoly.Add(polyA[myVec2.index]);
+                            xPos = polyA[myVec2.index].x;
+                        }
+                        else if (myVec2.polygon == 1)
+                        {
+                            combinedPoly.Add(polyB[myVec2.index]);
+                            xPos = polyB[myVec2.index].x;
+                        }
+                        else
+                        {
+                            combinedPoly.Add(new Vector3(xPos, myVec2.y, myVec2.x));
                         }
                     }
                 }
@@ -309,7 +320,7 @@ namespace Broccoli.HCGL
 
             int safety = 0;
 
-            while (true && safety <=10001)
+            while (true && safety <= 10001)
             {
                 if (thisVertex.Equals(firstVertex) || (thisVertex.neighbor != null && thisVertex.neighbor.Equals(firstVertex)))
                 {

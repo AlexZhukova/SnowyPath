@@ -5,17 +5,19 @@ using UnityEngine;
 
 using Broccoli.Model;
 
-namespace Broccoli.Pipe {
+namespace Broccoli.Pipe
+{
     /// <summary>
     /// Variation group class.
     /// </summary>
     [System.Serializable]
-    public class VariationGroup {
+    public class VariationGroup
+    {
         #region Vars
         /// <summary>
         /// Characters used to generate a random name for the framing.
         /// </summary>
-        const string glyphs= "abcdefghijklmnopqrstuvwxyz0123456789";
+        const string glyphs = "abcdefghijklmnopqrstuvwxyz0123456789";
         public int id = 0;
         public string name = "";
         public bool enabled = true;
@@ -26,7 +28,8 @@ namespace Broccoli.Pipe {
         public float minRadius = 0f;
         public float maxRadius = 0f;
         public float centerFactor = 0f;
-        public enum OrientationMode {
+        public enum OrientationMode
+        {
             CenterToPeriphery,
             PeripheryToCenter,
             clockwise,
@@ -42,7 +45,8 @@ namespace Broccoli.Pipe {
         public float maxScaleAtCenter = 1f;
         public float minScaleAtBorder = 1f;
         public float maxScaleAtBorder = 1f;
-        public enum BendMode {
+        public enum BendMode
+        {
             CenterToPeriphery,
             PeripheryToCenter,
             clockwise,
@@ -53,19 +57,20 @@ namespace Broccoli.Pipe {
         public float maxBendAtCenter = 0f;
         public float minBendAtBorder = 0f;
         public float maxBendAtBorder = 0f;
-        public List<int> snapshotIds = new List<int> ();
+        public List<int> snapshotIds = new List<int>();
         #endregion
 
         #region Constructor
-        public VariationGroup () {}
+        public VariationGroup() { }
         #endregion
 
         #region Clone
         /// <summary>
         /// Clone this instance.
         /// </summary>
-        public VariationGroup Clone () {
-            VariationGroup clone = new VariationGroup ();
+        public VariationGroup Clone()
+        {
+            VariationGroup clone = new VariationGroup();
             clone.id = id;
             clone.name = name;
             clone.enabled = enabled;
@@ -91,8 +96,9 @@ namespace Broccoli.Pipe {
             clone.maxBendAtCenter = maxBendAtCenter;
             clone.minBendAtBorder = minBendAtBorder;
             clone.maxBendAtBorder = maxBendAtBorder;
-            for (int i = 0; i < snapshotIds.Count; i++) {
-                clone.snapshotIds.Add (snapshotIds [i]);
+            for (int i = 0; i < snapshotIds.Count; i++)
+            {
+                clone.snapshotIds.Add(snapshotIds[i]);
             }
             return clone;
         }
@@ -101,11 +107,13 @@ namespace Broccoli.Pipe {
 		/// </summary>
 		/// <param name="length">Number of characters.</param>
 		/// <returns>Random string name.</returns>
-        public static string GetRandomName (int length = 6) {
+        public static string GetRandomName(int length = 6)
+        {
             string randomName = "";
-            Random.InitState ((int)System.DateTime.Now.Ticks);
-            for(int i = 0; i < 6; i++) {
-                randomName += glyphs [Random.Range (0, glyphs.Length)];
+            Random.InitState((int)System.DateTime.Now.Ticks);
+            for (int i = 0; i < 6; i++)
+            {
+                randomName += glyphs[Random.Range(0, glyphs.Length)];
             }
             return randomName;
         }
@@ -117,9 +125,11 @@ namespace Broccoli.Pipe {
         /// </summary>
         /// <param name="snapshotId">Id fo the snapshot.</param>
         /// <returns><c>True</c> if the snapshot gets added.</returns>
-        public bool AddSnapshot (int snapshotId) {
-            if (!snapshotIds.Contains (snapshotId)) {
-                snapshotIds.Add (snapshotId);
+        public bool AddSnapshot(int snapshotId)
+        {
+            if (!snapshotIds.Contains(snapshotId))
+            {
+                snapshotIds.Add(snapshotId);
             }
             return false;
         }
@@ -128,10 +138,12 @@ namespace Broccoli.Pipe {
         /// </summary>
         /// <param name="snapshotId">Id of the snapshot.</param>
         /// <returns><c>True</c> if the snapshot was removed.</returns>
-        public bool RemoveSnapshot (int snapshotId) {
-            int index = snapshotIds.IndexOf (snapshotId);
-            if (index >= 0) {
-                snapshotIds.RemoveAt (index);
+        public bool RemoveSnapshot(int snapshotId)
+        {
+            int index = snapshotIds.IndexOf(snapshotId);
+            if (index >= 0)
+            {
+                snapshotIds.RemoveAt(index);
                 return true;
             }
             return false;

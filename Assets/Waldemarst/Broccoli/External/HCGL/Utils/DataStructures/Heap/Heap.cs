@@ -23,7 +23,7 @@ namespace Broccoli.HCGL
         {
             this.items = new T[maxHeapSize];
         }
-        
+
 
         //Add a new item to the heap
         public void Add(T item)

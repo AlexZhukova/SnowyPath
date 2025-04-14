@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 
-namespace Broccoli.Model {
+namespace Broccoli.Model
+{
     /// <summary>
     /// Imutable class containing all data about a point on a cubic bezier curve.
     /// </summary>
-    public class CurvePoint {
+    public class CurvePoint
+    {
         public Vector3 position;
         public Vector3 tangent;
         public Vector3 up;
@@ -25,32 +27,35 @@ namespace Broccoli.Model {
         /// <summary>
         /// Rotation is a look-at quaternion calculated from the tangent, roll and up vector. Mixing non zero roll and custom up vector is not advised.
         /// </summary>
-        public Quaternion rotation {
-            get {
-                if (_rotation.Equals(Quaternion.identity)) {
+        public Quaternion rotation
+        {
+            get
+            {
+                if (_rotation.Equals(Quaternion.identity))
+                {
                     var upVector = Vector3.Cross(tangent, Vector3.Cross(Quaternion.AngleAxis(roll, Vector3.forward) * up, tangent).normalized);
-                    _rotation =  Quaternion.LookRotation(tangent, upVector);
+                    _rotation = Quaternion.LookRotation(tangent, upVector);
                 }
                 return _rotation;
             }
         }
 
-        public CurvePoint (Vector3 location,
-            Vector3 tangent, 
-            Vector3 forward, 
-            Vector3 normal, 
-            Vector2 scale, 
-            float girth, 
-            float roll, 
+        public CurvePoint(Vector3 location,
+            Vector3 tangent,
+            Vector3 forward,
+            Vector3 normal,
+            Vector2 scale,
+            float girth,
+            float roll,
             float distanceInCurve,
             float positionInCurve,
-            float timeInCurve) 
+            float timeInCurve)
         {
             this.position = location;
             this.tangent = tangent;
             this.forward = forward;
             this.normal = normal;
-            this.up = Vector3.Cross (forward, normal);
+            this.up = Vector3.Cross(forward, normal);
             this.girth = girth;
             this.roll = roll;
             this.scale = scale;
@@ -66,7 +71,8 @@ namespace Broccoli.Model {
         /// <param name="b"></param>
         /// <param name="t"></param>
         /// <returns></returns>
-        public static CurvePoint Lerp(CurvePoint a, CurvePoint b, float t) {
+        public static CurvePoint Lerp(CurvePoint a, CurvePoint b, float t)
+        {
             CurvePoint point = new CurvePoint(
                 Vector3.Lerp(a.position, b.position, t),
                 Vector3.Lerp(a.tangent, b.tangent, t).normalized,
@@ -78,14 +84,15 @@ namespace Broccoli.Model {
                 Mathf.Lerp(a.lengthPosition, b.lengthPosition, t),
                 Mathf.Lerp(a.relativePosition, b.relativePosition, t),
                 Mathf.Lerp(a.timePosition, b.timePosition, t));
-            point.perlinNoiseX = Mathf.Lerp (a.perlinNoiseX, b.perlinNoiseX, t);
-            point.perlinNoiseY = Mathf.Lerp (a.perlinNoiseY, b.perlinNoiseY, t);
+            point.perlinNoiseX = Mathf.Lerp(a.perlinNoiseX, b.perlinNoiseX, t);
+            point.perlinNoiseY = Mathf.Lerp(a.perlinNoiseY, b.perlinNoiseY, t);
             return point;
         }
         #region Cloning
-        public CurvePoint Clone () {
-            CurvePoint clone = new CurvePoint (position, 
-                tangent, forward, normal, scale, girth, roll, 
+        public CurvePoint Clone()
+        {
+            CurvePoint clone = new CurvePoint(position,
+                tangent, forward, normal, scale, girth, roll,
                 lengthPosition, relativePosition, timePosition);
             clone.perlinNoiseX = perlinNoiseX;
             clone.perlinNoiseY = perlinNoiseY;

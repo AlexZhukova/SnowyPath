@@ -12,23 +12,26 @@ namespace Broccoli.HCGL
         /// </summary>
         /// <param name="points">Points to triangulate.</param>
         /// <returns>Index of triangles.</returns>
-        public static List<int> ProcessYZ (List<Vector3> points) {
-            List<int> triangles = new List<int> ();
-            HashSet<MyVector2> _pointsToTriangulate = new HashSet<MyVector2> ();
+        public static List<int> ProcessYZ(List<Vector3> points)
+        {
+            List<int> triangles = new List<int>();
+            HashSet<MyVector2> _pointsToTriangulate = new HashSet<MyVector2>();
             MyVector2 myVector2;
-			for (int i = 0; i < points.Count; i++) {
-                myVector2 = new MyVector2 (points [i].z, points [i].y);
+            for (int i = 0; i < points.Count; i++)
+            {
+                myVector2 = new MyVector2(points[i].z, points[i].y);
                 myVector2.index = i;
-				_pointsToTriangulate.Add (myVector2);
-			}
-            HalfEdgeData2 triangleData = new HalfEdgeData2 ();
-            triangleData = DelaunayIncrementalSloan.GenerateTriangulation (_pointsToTriangulate, triangleData);
+                _pointsToTriangulate.Add(myVector2);
+            }
+            HalfEdgeData2 triangleData = new HalfEdgeData2();
+            triangleData = DelaunayIncrementalSloan.GenerateTriangulation(_pointsToTriangulate, triangleData);
             HashSet<Triangle2> triangles_2d = _TransformBetweenDataStructures.HalfEdge2ToTriangle2(triangleData);
-            foreach (var triangle in triangles_2d) {
-                triangles.Add (triangle.p1.index);
-                triangles.Add (triangle.p2.index);
-                triangles.Add (triangle.p3.index);
-			}
+            foreach (var triangle in triangles_2d)
+            {
+                triangles.Add(triangle.p1.index);
+                triangles.Add(triangle.p2.index);
+                triangles.Add(triangle.p3.index);
+            }
             return triangles;
         }
         /// <summary>
@@ -36,28 +39,32 @@ namespace Broccoli.HCGL
         /// </summary>
         /// <param name="points">Points to triangulate.</param>
         /// <returns>Index of triangles.</returns>
-        public static List<int> ProcessConstrainedYZ (List<Vector3> points, int lastConvexPointIndex) {
-            List<int> triangles = new List<int> ();
-            HashSet<MyVector2> _pointsToTriangulate = new HashSet<MyVector2> ();
-            List<MyVector2> _hull = new List<MyVector2> ();
+        public static List<int> ProcessConstrainedYZ(List<Vector3> points, int lastConvexPointIndex)
+        {
+            List<int> triangles = new List<int>();
+            HashSet<MyVector2> _pointsToTriangulate = new HashSet<MyVector2>();
+            List<MyVector2> _hull = new List<MyVector2>();
             MyVector2 myVector2;
-			for (int i = 0; i < points.Count; i++) {
-                myVector2 = new MyVector2 (points [i].z, points [i].y);
+            for (int i = 0; i < points.Count; i++)
+            {
+                myVector2 = new MyVector2(points[i].z, points[i].y);
                 myVector2.index = i;
-				_pointsToTriangulate.Add (myVector2);
-                if (i <= lastConvexPointIndex) {
-                    _hull.Add (myVector2);
+                _pointsToTriangulate.Add(myVector2);
+                if (i <= lastConvexPointIndex)
+                {
+                    _hull.Add(myVector2);
                 }
-			}
-            HalfEdgeData2 triangleData = new HalfEdgeData2 ();
+            }
+            HalfEdgeData2 triangleData = new HalfEdgeData2();
             //triangleData = DelaunayIncrementalSloan.GenerateTriangulation (_pointsToTriangulate, triangleData);
-            triangleData = ConstrainedBySloan (_pointsToTriangulate, _hull, null, true, triangleData);
+            triangleData = ConstrainedBySloan(_pointsToTriangulate, _hull, null, true, triangleData);
             HashSet<Triangle2> triangles_2d = _TransformBetweenDataStructures.HalfEdge2ToTriangle2(triangleData);
-            foreach (var triangle in triangles_2d) {
-                triangles.Add (triangle.p1.index);
-                triangles.Add (triangle.p2.index);
-                triangles.Add (triangle.p3.index);
-			}
+            foreach (var triangle in triangles_2d)
+            {
+                triangles.Add(triangle.p1.index);
+                triangles.Add(triangle.p2.index);
+                triangles.Add(triangle.p3.index);
+            }
             return triangles;
         }
         //

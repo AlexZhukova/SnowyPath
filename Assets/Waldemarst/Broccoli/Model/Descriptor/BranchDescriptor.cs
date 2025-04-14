@@ -5,15 +5,18 @@ using UnityEngine;
 
 using Broccoli.Model;
 
-namespace Broccoli.Pipe {
+namespace Broccoli.Pipe
+{
     /// <summary>
     /// Sprout group container class.
     /// </summary>
     [System.Serializable]
-    public class BranchDescriptor {
+    public class BranchDescriptor
+    {
         #region Branch Level Descriptor
         [System.Serializable]
-        public class BranchLevelDescriptor {
+        public class BranchLevelDescriptor
+        {
             #region Vars
             public bool isEnabled = true;
             public int minFrequency = 1;
@@ -38,8 +41,9 @@ namespace Broccoli.Pipe {
             #endregion
 
             #region Clone
-            public BranchLevelDescriptor Clone () {
-                BranchLevelDescriptor clone = new BranchLevelDescriptor ();
+            public BranchLevelDescriptor Clone()
+            {
+                BranchLevelDescriptor clone = new BranchLevelDescriptor();
                 clone.isEnabled = isEnabled;
                 clone.minFrequency = minFrequency;
                 clone.maxFrequency = maxFrequency;
@@ -68,7 +72,8 @@ namespace Broccoli.Pipe {
 
         #region Sprout Level Descriptor
         [System.Serializable]
-        public class SproutLevelDescriptor {
+        public class SproutLevelDescriptor
+        {
             #region Vars
             public bool isEnabled = true;
             public int minFrequency = 5;
@@ -86,8 +91,9 @@ namespace Broccoli.Pipe {
             #endregion
 
             #region Clone
-            public SproutLevelDescriptor Clone () {
-                SproutLevelDescriptor clone = new SproutLevelDescriptor ();
+            public SproutLevelDescriptor Clone()
+            {
+                SproutLevelDescriptor clone = new SproutLevelDescriptor();
                 clone.isEnabled = isEnabled;
                 clone.minFrequency = minFrequency;
                 clone.maxFrequency = maxFrequency;
@@ -122,38 +128,45 @@ namespace Broccoli.Pipe {
         public float noiseAtTop = 0.5f;
         public float noiseScaleAtBase = 0.75f;
         public float noiseScaleAtTop = 0.75f;
-        public List<BranchLevelDescriptor> branchLevelDescriptors = new List<BranchLevelDescriptor> ();
+        public List<BranchLevelDescriptor> branchLevelDescriptors = new List<BranchLevelDescriptor>();
         public float sproutASize = 1f;
         public float sproutAScaleAtBase = 1f;
         public float sproutAScaleAtTop = 1f;
         public float sproutAFlipAlign = 0.8f;
         public float sproutANormalRandomness = 0.5f;
-        public List<SproutLevelDescriptor> sproutALevelDescriptors = new List<SproutLevelDescriptor> ();
+        public List<SproutLevelDescriptor> sproutALevelDescriptors = new List<SproutLevelDescriptor>();
         public float sproutBSize = 1f;
         public float sproutBScaleAtBase = 1f;
         public float sproutBScaleAtTop = 1f;
         public float sproutBFlipAlign = 0.8f;
         public float sproutBNormalRandomness = 0.5f;
-        public List<SproutLevelDescriptor> sproutBLevelDescriptors = new List<SproutLevelDescriptor> ();
-        public List<PolygonArea> polygonAreas = new List<PolygonArea> ();
+        public List<SproutLevelDescriptor> sproutBLevelDescriptors = new List<SproutLevelDescriptor>();
+        public List<PolygonArea> polygonAreas = new List<PolygonArea>();
         public int lodCount = 3;
         #endregion
 
         #region Constructor
-        public BranchDescriptor () {
-            if (branchLevelDescriptors.Count == 0) {
-                for (int i = 0; i < 4; i++) {
-                    branchLevelDescriptors.Add (new BranchLevelDescriptor ());
+        public BranchDescriptor()
+        {
+            if (branchLevelDescriptors.Count == 0)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    branchLevelDescriptors.Add(new BranchLevelDescriptor());
                 }
             }
-            if (sproutALevelDescriptors.Count == 0) {
-                for (int i = 0; i < 4; i++) {
-                    sproutALevelDescriptors.Add (new SproutLevelDescriptor ());
+            if (sproutALevelDescriptors.Count == 0)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    sproutALevelDescriptors.Add(new SproutLevelDescriptor());
                 }
             }
-            if (sproutBLevelDescriptors.Count == 0) {
-                for (int i = 0; i < 4; i++) {
-                    sproutBLevelDescriptors.Add (new SproutLevelDescriptor ());
+            if (sproutBLevelDescriptors.Count == 0)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    sproutBLevelDescriptors.Add(new SproutLevelDescriptor());
                 }
             }
         }
@@ -163,8 +176,9 @@ namespace Broccoli.Pipe {
         /// <summary>
         /// Clone this instance.
         /// </summary>
-        public BranchDescriptor Clone () {
-            BranchDescriptor clone = new BranchDescriptor ();
+        public BranchDescriptor Clone()
+        {
+            BranchDescriptor clone = new BranchDescriptor();
             clone.id = id;
             clone.processorId = processorId;
             clone.seed = seed;
@@ -175,30 +189,34 @@ namespace Broccoli.Pipe {
             clone.noiseAtTop = noiseAtTop;
             clone.noiseScaleAtBase = noiseScaleAtBase;
             clone.noiseScaleAtTop = noiseScaleAtTop;
-            clone.branchLevelDescriptors.Clear ();
-            for (int i = 0; i < branchLevelDescriptors.Count; i++) {
-                clone.branchLevelDescriptors.Add (branchLevelDescriptors [i].Clone ());
+            clone.branchLevelDescriptors.Clear();
+            for (int i = 0; i < branchLevelDescriptors.Count; i++)
+            {
+                clone.branchLevelDescriptors.Add(branchLevelDescriptors[i].Clone());
             }
             clone.sproutASize = sproutASize;
             clone.sproutAScaleAtBase = sproutAScaleAtBase;
             clone.sproutAScaleAtTop = sproutAScaleAtTop;
             clone.sproutAFlipAlign = sproutAFlipAlign;
             clone.sproutANormalRandomness = sproutANormalRandomness;
-            clone.sproutALevelDescriptors.Clear ();
-            for (int i = 0; i < sproutALevelDescriptors.Count; i++) {
-                clone.sproutALevelDescriptors.Add (sproutALevelDescriptors [i].Clone ());
+            clone.sproutALevelDescriptors.Clear();
+            for (int i = 0; i < sproutALevelDescriptors.Count; i++)
+            {
+                clone.sproutALevelDescriptors.Add(sproutALevelDescriptors[i].Clone());
             }
             clone.sproutBSize = sproutBSize;
             clone.sproutBScaleAtBase = sproutBScaleAtBase;
             clone.sproutBScaleAtTop = sproutBScaleAtTop;
             clone.sproutBFlipAlign = sproutBFlipAlign;
             clone.sproutBNormalRandomness = sproutBNormalRandomness;
-            clone.sproutBLevelDescriptors.Clear ();
-            for (int i = 0; i < sproutBLevelDescriptors.Count; i++) {
-                clone.sproutBLevelDescriptors.Add (sproutBLevelDescriptors [i].Clone ());
+            clone.sproutBLevelDescriptors.Clear();
+            for (int i = 0; i < sproutBLevelDescriptors.Count; i++)
+            {
+                clone.sproutBLevelDescriptors.Add(sproutBLevelDescriptors[i].Clone());
             }
-            for (int i = 0; i < polygonAreas.Count; i++) {
-                clone.polygonAreas.Add (polygonAreas [i].Clone ());
+            for (int i = 0; i < polygonAreas.Count; i++)
+            {
+                clone.polygonAreas.Add(polygonAreas[i].Clone());
             }
             clone.lodCount = lodCount;
             return clone;

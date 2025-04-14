@@ -15,7 +15,7 @@ namespace Broccoli.HCGL
     public static class JarvisMarchAlgorithm2D
     {
         public static List<MyVector2> GenerateConvexHull(List<MyVector2> points)
-        {   
+        {
             List<MyVector2> pointsOnConvexHull = new List<MyVector2>();
 
 
@@ -80,7 +80,7 @@ namespace Broccoli.HCGL
                 for (int i = 0; i < points.Count; i++)
                 {
                     MyVector2 testPoint = points[i];
-                
+
                     //Dont test the point we picked randomly
                     //Or the point we are coming from which might happen when we move from the first point on the hull
                     if (testPoint.Equals(nextPoint) || testPoint.Equals(previousPoint))
@@ -157,7 +157,7 @@ namespace Broccoli.HCGL
 
             //Dont forget to unnormalize the points!
 
-            
+
 
             return pointsOnConvexHull;
         }

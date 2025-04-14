@@ -66,9 +66,9 @@ namespace Broccoli.HCGL
             for (int i = 0; i < extremePoints.Count; i++)
             {
                 MyVector2 p1_test = extremePoints[i];
-            
+
                 for (int j = i + 1; j < extremePoints.Count; j++)
-                {                
+                {
                     MyVector2 p2_test = extremePoints[j];
 
                     float distSqr = MyVector2.SqrDistance(p1_test, p2_test);
@@ -95,7 +95,7 @@ namespace Broccoli.HCGL
             //Find the third point on the hull, by finding the point which is the furthest
             //from the line between p1 and p2
             MyVector2 p3 = FindPointFurthestFromEdge(p1, p2, pointsToAdd);
-           
+
             //Remove it from the points we want to add
             pointsToAdd.Remove(p3);
 
@@ -109,7 +109,7 @@ namespace Broccoli.HCGL
             {
                 tStart.ChangeOrientation();
             }
-            
+
             //New p1-p3
             p1 = tStart.p1;
             p2 = tStart.p2;
@@ -161,7 +161,7 @@ namespace Broccoli.HCGL
             //For each edge, find the point furthest away and create a new triangle
             //and repeat the above steps by finding which points are inside of the hull
             //and which points are outside and belong to a new edge
-            
+
             //Will automatically ignore the last point on this sub-hull to avoid doubles 
             List<MyVector2> pointsOnHUll_p1p2 = CreateSubConvexHUll(p1, p2, edge_p1p2_points);
 
@@ -199,7 +199,7 @@ namespace Broccoli.HCGL
         private static List<MyVector2> AddColinearPoints(List<MyVector2> pointsOnConvexHull, List<MyVector2> points)
         {
             List<MyVector2> pointsOnConvexHull_IncludingColinear = new List<MyVector2>();
-            
+
             //From the original points we dont have to remove the points that are on the convex hull
             //because they will be added anyway
 
@@ -244,8 +244,8 @@ namespace Broccoli.HCGL
                 //Never return the last point so we avoid doubles on the convex hull
                 return new List<MyVector2>() { p1 };
             }
-        
-        
+
+
             //Find the point which is furthest from an edge
             MyVector2 p2 = FindPointFurthestFromEdge(p1, p3, pointsToAdd);
 
@@ -376,7 +376,7 @@ namespace Broccoli.HCGL
             foreach (MyVector2 p in points)
             {
                 MyVector2 pUnNormalize = normalizer.UnNormalize(p);
-            
+
                 Debug.DrawLine(MyVector3.ToVector3(pUnNormalize), Vector3.zero, Color.blue, 3f);
             }
         }

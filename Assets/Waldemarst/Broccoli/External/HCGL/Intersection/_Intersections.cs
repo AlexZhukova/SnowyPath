@@ -102,7 +102,7 @@ namespace Broccoli.HCGL
 
             return intersectionPoint;
         }
-        
+
         //3d
         private static MyVector3 GetIntersectionCoordinate(Plane3 plane, Ray3 ray)
         {
@@ -378,7 +378,7 @@ namespace Broccoli.HCGL
         //
         // Are two Axis-aligned-bounding-box (boxes are here rectangles) intersecting?
         //
-        
+
         //2d
         public static bool AABB_AABB(AABB2 r1, AABB2 r2)
         {
@@ -425,7 +425,7 @@ namespace Broccoli.HCGL
 
             //The distance sqr from the point to the circle center
             float distPointCenterSqr = MyVector2.SqrDistance(testPoint, circleCenter);
-            
+
             //Add/remove a small value becuse we will never be exactly on the edge because of floating point precision issues
             //Mutiply epsilon by two because we are using sqr root???
             if (distPointCenterSqr < radiusSqr - MathUtility.EPSILON * 2f)

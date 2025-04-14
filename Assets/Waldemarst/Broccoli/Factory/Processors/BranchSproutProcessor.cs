@@ -8,8 +8,9 @@ namespace Broccoli.Factory
     /// <summary>
     /// Default processor for branch collections.
     /// </summary>
-    [SproutProcessor (0)]
-    public class BranchSproutProcessor : ISproutProcessor {
+    [SproutProcessor(0)]
+    public class BranchSproutProcessor : ISproutProcessor
+    {
         /// <summary>
         /// Gets the fragmentation parameters according to the
         /// tree max hierarchy level and the LOD.
@@ -19,9 +20,9 @@ namespace Broccoli.Factory
         /// <param name="fragLevels">How many fragmentation levels to support. From 1 to n.</param>
         /// <param name="minFragLevel">Where the fragmentation level begins. From 0 to n.</param>
         /// <returns>Fragmentation bias type to generate the fragments.</returns>
-        public SproutProcessor.FragmentationBias GetFragmentation (
-            int maxLevel, 
-            int lod, 
+        public SproutProcessor.FragmentationBias GetFragmentation(
+            int maxLevel,
+            int lod,
             out int fragLevels,
             out int minFragLevel,
             out int maxFragLevel)
@@ -31,13 +32,16 @@ namespace Broccoli.Factory
             minFragLevel = 0;
             maxFragLevel = 0;
             // For LOD 0, LOD 1
-            if (lod == 0 || lod == 1) {
-                if (maxLevel > 1) {
+            if (lod == 0 || lod == 1)
+            {
+                if (maxLevel > 1)
+                {
                     minFragLevel = 1;
                     maxFragLevel = 1;
                 }
             }
-            if (lod == 2) {
+            if (lod == 2)
+            {
                 return SproutProcessor.FragmentationBias.None;
             }
             return SproutProcessor.FragmentationBias.PlaneAlignment;
@@ -50,11 +54,11 @@ namespace Broccoli.Factory
         /// <param name="fragLevel">Frag level to request.</param>
         /// <param name="hullAngle">Parameter to simplify the hull.</param>
         /// <returns>Hull type.</returns>
-        public SproutProcessor.HullType GetHullType (
+        public SproutProcessor.HullType GetHullType(
             int maxLevel,
             int lod,
             int fragLevel,
-            out float hullAngle) 
+            out float hullAngle)
         {
             // Set hull angle.
             hullAngle = 30f;
@@ -62,8 +66,10 @@ namespace Broccoli.Factory
             else if (lod == 1) hullAngle = 27f;
 
             // Return Hull Type.
-            if (maxLevel >= 2 && lod == 0) {
-                if (fragLevel == 0) {
+            if (maxLevel >= 2 && lod == 0)
+            {
+                if (fragLevel == 0)
+                {
                     return SproutProcessor.HullType.NonConvex;
                 }
             }

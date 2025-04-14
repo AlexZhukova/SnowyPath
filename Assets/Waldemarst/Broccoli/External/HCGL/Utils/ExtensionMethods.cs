@@ -84,7 +84,7 @@ namespace Broccoli.HCGL
         public static T FakePopHCGL<T>(this HashSet<T> hashSet)
         {
             T firstBestT = default;
-        
+
             foreach (T thisT in hashSet)
             {
                 firstBestT = thisT;

@@ -12,7 +12,7 @@
 //    public static List<Cell> GenerateVoronoiDiagram(List<Vector3> sites, float halfWidth, int breakInt)
 //    {
 //        bool isDebugOn = false;
-    
+
 //        //Initialize edges and cells to be empty
 //        List<Edge> edges = new List<Edge>();
 
@@ -101,7 +101,7 @@
 
 //                //The position of this vector
 //                Vector3 centerPos = (newCell.cellPos + existingCell.cellPos) * 0.5f;
-                    
+
 
 //                //Create a data structure to hold the critical points and edges to delete
 //                List<Vector3> criticalPoints = new List<Vector3>();
@@ -198,10 +198,10 @@
 //                        //if (relation_p1 >= -tolerance && relation_p1 <= tolerance && relation_p2 >= -tolerance && relation_p2 <= tolerance)
 //                        //{
 //                        //    Debug.Log("On the edge");
-                        
+
 //                        //    continue;
 //                        //}
-                    
+
 //                        Vector3 intersectionPoint = Intersections.GetLinePlaneIntersectionCoordinate(vecBetween, centerPos, edge_p1, edge_p2);
 
 //                        criticalPoints.Add(intersectionPoint);
@@ -366,7 +366,7 @@
 //                }
 
 //            }
-            
+
 //            cells.Add(newCell);
 //        }
 

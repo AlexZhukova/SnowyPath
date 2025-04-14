@@ -17,7 +17,7 @@ namespace Broccoli.HCGL.MeshAlgorithms
             if (cells <= 0)
             {
                 Debug.Log("The grid needs at least one cell");
-            
+
                 return null;
             }
 

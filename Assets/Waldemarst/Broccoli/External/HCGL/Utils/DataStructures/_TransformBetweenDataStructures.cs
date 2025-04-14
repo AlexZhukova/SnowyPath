@@ -103,7 +103,7 @@ namespace Broccoli.HCGL
             {
                 return null;
             }
-        
+
             HashSet<Triangle2> triangles = new HashSet<Triangle2>();
 
             foreach (HalfEdgeFace2 face in data.faces)
@@ -158,7 +158,7 @@ namespace Broccoli.HCGL
             {
                 return null;
             }
-                    
+
 
             //Step 2. Create the list with unique vertices
             //A hashset will make it fast to check if a vertex already exists in the collection

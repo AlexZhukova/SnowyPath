@@ -8,12 +8,14 @@ namespace Broccoli.Model
     /// Level of Detail (LOD) definition for trees.
     /// </summary>
 	[System.Serializable]
-	public class LODDef {
-		#region Vars
+    public class LODDef
+    {
+        #region Vars
         /// <summary>
         /// Predefined quality settings on LOD definitions.
         /// </summary>
-        public enum Preset {
+        public enum Preset
+        {
             UltraLowPoly,
             LowPoly,
             RegularPoly,
@@ -61,7 +63,7 @@ namespace Broccoli.Model
         /// How much percentage this LOD definition takes on a LOD group.
         /// </summary>
         public float groupPercentage = 0.3f;
-		#endregion
+        #endregion
 
         #region Presets
         /// <summary>
@@ -70,12 +72,15 @@ namespace Broccoli.Model
         /// <param name="preset">Preset for the LOD.</param>
         /// <param name="lodDef">Optional LODDef instance to set the preset values to.</param>
         /// <returns>LODDef instance.</returns>
-        public static LODDef GetPreset (Preset preset, LODDef lodDef = null) {
-            if (lodDef == null) {
-                lodDef = new LODDef ();
+        public static LODDef GetPreset(Preset preset, LODDef lodDef = null)
+        {
+            if (lodDef == null)
+            {
+                lodDef = new LODDef();
             }
             lodDef.preset = preset;
-            switch (lodDef.preset) {
+            switch (lodDef.preset)
+            {
                 case Preset.UltraLowPoly:
                     lodDef.minPolygonSides = 3;
                     lodDef.maxPolygonSides = 5;
@@ -123,12 +128,13 @@ namespace Broccoli.Model
         }
         #endregion
 
-		#region Cloning
-		/// <summary>
-		/// Clone this instance.
-		/// </summary>
-		public LODDef Clone() {
-			LODDef clone = new LODDef ();
+        #region Cloning
+        /// <summary>
+        /// Clone this instance.
+        /// </summary>
+        public LODDef Clone()
+        {
+            LODDef clone = new LODDef();
             clone.preset = preset;
             clone.includeInPrefab = true;
             clone.minPolygonSides = minPolygonSides;
@@ -137,8 +143,8 @@ namespace Broccoli.Model
             clone.sproutAngleTolerance = sproutAngleTolerance;
             clone.useMeshCapAtBase = useMeshCapAtBase;
             clone.groupPercentage = groupPercentage;
-			return clone;
-		}
-		#endregion
-	}
+            return clone;
+        }
+        #endregion
+    }
 }

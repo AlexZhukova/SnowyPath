@@ -39,8 +39,8 @@ namespace Broccoli.HCGL
 
             return interpolatedPositions;
         }
-    
-    
+
+
 
         //
         // Calculate length of curve
@@ -75,7 +75,7 @@ namespace Broccoli.HCGL
         public static float GetLength_SimpsonsRule(_Curve curve, float tStart, float tEnd)
         {
             //Divide the curve into sections
-            
+
             //How many sections?
             int n = 10;
 
@@ -118,7 +118,7 @@ namespace Broccoli.HCGL
 
             return length;
         }
-    
+
 
 
         //
@@ -143,7 +143,7 @@ namespace Broccoli.HCGL
             //If this start value is not working you can use the Bisection Method to find a start value
             //https://en.wikipedia.org/wiki/Bisection_method
             float tGood = d / totalLength;
-            
+
             //Need an error so we know when to stop the iteration
             float error = 0.001f;
 
@@ -195,7 +195,7 @@ namespace Broccoli.HCGL
             }
 
 
-            
+
             return tGood;
         }
 
@@ -252,7 +252,7 @@ namespace Broccoli.HCGL
 
             //Step 3. Interpolate to get the t-value
             //Each distance also has a t-value we used to generate that distance
-            
+
             //Each t in the list is increasing each step by: 
             float stepSize = 1f / (float)(accumulatedDistances.Count - 1);
 
@@ -297,7 +297,7 @@ namespace Broccoli.HCGL
             if (accumulatedDistances == null || accumulatedDistances.Count == 0)
             {
                 Debug.Log("Cant interpolate to find exact percentage along curve");
-                
+
                 return 0f;
             }
 
@@ -312,7 +312,7 @@ namespace Broccoli.HCGL
             //t-value can be seen as percentage, so we get percentage along the list of values
             //If we have 5 values in the list, we have 4 buckets, so if t is 0.65, we get 0.65*4 = 2.6
             float arrayPosBetween = tBad * (float)(accumulatedDistances.Count - 1);
-            
+
             //Round up and down to get the actual array positions
             int arrayPosL = Mathf.FloorToInt(arrayPosBetween); //2 if we follow the example above 
             int arrayPosR = Mathf.FloorToInt(arrayPosBetween + 1f); //2.6 + 1 = 3.6 -> 3 
@@ -341,7 +341,7 @@ namespace Broccoli.HCGL
 
             //Debug.Log("t-bad: " + tBad + " t-actual: " + tActual);
 
-            
+
 
             return tActual;
         }

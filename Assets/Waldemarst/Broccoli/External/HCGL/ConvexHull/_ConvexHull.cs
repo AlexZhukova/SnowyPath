@@ -19,7 +19,7 @@ namespace Broccoli.HCGL
             {
                 return null;
             }
-        
+
             //Has to return a list and not hashset because the points have an order coming after each other
             List<MyVector2> pointsOnHull = JarvisMarchAlgorithm2D.GenerateConvexHull(pointsList);
 
@@ -32,19 +32,22 @@ namespace Broccoli.HCGL
         /// <param name="candidatePoints">Candidate points.</param>
         /// <param name="includeColinearPoints">Include colinear points.</param>
         /// <returns>List of points of a convex hull polygon.</returns>
-        public static List<Vector3> ProcessQuickHullYZ (List<Vector3> candidatePoints, bool includeColinearPoints) {
-            HashSet<MyVector2> _points = new HashSet<MyVector2> ();
+        public static List<Vector3> ProcessQuickHullYZ(List<Vector3> candidatePoints, bool includeColinearPoints)
+        {
+            HashSet<MyVector2> _points = new HashSet<MyVector2>();
             MyVector2 myVector2;
-            for (int i = 0; i < candidatePoints.Count; i++) {
-                myVector2 = MyVector2.ToMyVector2ZY(candidatePoints [i]);
+            for (int i = 0; i < candidatePoints.Count; i++)
+            {
+                myVector2 = MyVector2.ToMyVector2ZY(candidatePoints[i]);
                 myVector2.index = i;
-                _points.Add (myVector2);
+                _points.Add(myVector2);
             }
-			List<MyVector2> convexPoints = _ConvexHull.Quickhull_2D (_points, false);
-            List<Vector3> _convexPoints = new List<Vector3> ();
-			for (int i = 0; i < convexPoints.Count; i++) {
-				_convexPoints.Add (candidatePoints [convexPoints [i].index]);
-			}
+            List<MyVector2> convexPoints = _ConvexHull.Quickhull_2D(_points, false);
+            List<Vector3> _convexPoints = new List<Vector3>();
+            for (int i = 0; i < convexPoints.Count; i++)
+            {
+                _convexPoints.Add(candidatePoints[convexPoints[i].index]);
+            }
             return _convexPoints;
         }
         //Quickhull

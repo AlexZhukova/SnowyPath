@@ -84,7 +84,7 @@ namespace Broccoli.HCGL
             finalInterpolation += -t * (3f * (A - B));
 
             finalInterpolation += Mathf.Pow(t, 2f) * (3f * (A - 2f * B + C));
-            
+
             //t^3 -> cubic 
             finalInterpolation += Mathf.Pow(t, 3f) * (-(A - 3f * (B - C) - D));
 

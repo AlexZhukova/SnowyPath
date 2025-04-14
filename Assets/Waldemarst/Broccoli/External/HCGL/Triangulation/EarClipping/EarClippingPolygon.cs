@@ -33,7 +33,7 @@ namespace Broccoli.HCGL
         private void CalculateMaxXValue()
         {
             List<MyVector2> vertices = polygon.vertices;
-        
+
             this.maxX_Vert = vertices[0];
 
             this.maxX_ListPos = 0;

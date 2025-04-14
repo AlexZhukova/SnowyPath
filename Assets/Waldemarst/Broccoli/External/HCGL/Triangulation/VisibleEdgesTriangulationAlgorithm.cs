@@ -35,7 +35,7 @@ namespace Broccoli.HCGL
 
                 return null;
             }
-        
+
 
             //Step 0. Init the triangles we will return
             HashSet<Triangle2> triangles = new HashSet<Triangle2>();
@@ -72,7 +72,7 @@ namespace Broccoli.HCGL
             {
                 //We have found a non-colinear point
                 LeftOnRight pointRelation = _Geometry.IsPoint_Left_On_Right_OfVector(p1, p2, sortedPoints[i]);
-                
+
                 if (pointRelation == LeftOnRight.Left || pointRelation == LeftOnRight.Right)
                 {
                     MyVector2 p3 = sortedPoints[i];
@@ -94,7 +94,7 @@ namespace Broccoli.HCGL
             if (triangles.Count == 0)
             {
                 Debug.Log("All points you want to triangulate a co-linear");
-                
+
                 return null;
             }
 
@@ -148,7 +148,7 @@ namespace Broccoli.HCGL
                     //If this triangle is clockwise, then we can see the edge
                     //so we should create a new triangle with this edge and the point
                     if (_Geometry.IsTriangleOrientedClockwise(hull_p1, hull_p2, pointToAdd))
-                    {                    
+                    {
                         triangles.Add(new Triangle2(hull_p1, hull_p2, pointToAdd));
 
                         couldFormTriangle = true;
@@ -171,7 +171,7 @@ namespace Broccoli.HCGL
                     Debug.Log("This point could not form any triangles " + pointToAdd.x + " " + pointToAdd.y);
                 }
             }
-            
+
 
 
             return triangles;

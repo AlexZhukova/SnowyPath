@@ -9,7 +9,7 @@ namespace Broccoli.HCGL
     public struct MyQuaternion
     {
         private Quaternion unityQuaternion;
-    
+
         public MyQuaternion(MyVector3 forward)
         {
             this.unityQuaternion = Quaternion.LookRotation(MyVector3.ToVector3(forward));
@@ -33,7 +33,7 @@ namespace Broccoli.HCGL
 
         //Rotate a quaternion some degrees around some axis
         public static MyQuaternion RotateQuaternion(MyQuaternion oldQuaternion, float angleInDegrees, MyVector3 rotationAxis)
-        {        
+        {
             Quaternion rotationQuaternion = Quaternion.AngleAxis(angleInDegrees, MyVector3.ToVector3(rotationAxis));
 
             //To rotate a quaternion you just multiply it with the rotation quaternion
@@ -69,8 +69,8 @@ namespace Broccoli.HCGL
         //
 
         //If you multiply orientation with direction vector you will rotate the direction
-        public MyVector3 Forward => MyVector3.ToMyVector3 (unityQuaternion * Vector3.forward);
-        public MyVector3 Right   => MyVector3.ToMyVector3 (unityQuaternion * Vector3.right);
-        public MyVector3 Up      => MyVector3.ToMyVector3 (unityQuaternion * Vector3.up);
+        public MyVector3 Forward => MyVector3.ToMyVector3(unityQuaternion * Vector3.forward);
+        public MyVector3 Right => MyVector3.ToMyVector3(unityQuaternion * Vector3.right);
+        public MyVector3 Up => MyVector3.ToMyVector3(unityQuaternion * Vector3.up);
     }
 }

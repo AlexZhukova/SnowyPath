@@ -82,7 +82,7 @@ namespace Broccoli.HCGL
 
             squareGrid.vertices = new List<MyVector2>(vertices);
 
-            squareGrid.contourEdges = new List<Edge2>(contourEdges); 
+            squareGrid.contourEdges = new List<Edge2>(contourEdges);
 
 
             return squareGrid;

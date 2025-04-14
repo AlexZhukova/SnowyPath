@@ -395,6 +395,6 @@ namespace Broccoli.HCGL
 
             return unNormalizedData;
         }
-        
+
     }
 }

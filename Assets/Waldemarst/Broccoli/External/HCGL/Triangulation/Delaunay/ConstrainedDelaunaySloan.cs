@@ -35,10 +35,10 @@ namespace Broccoli.HCGL
 
             //Generate the Delaunay triangulation with some algorithm
             //timer.Start();
-            
+
             //triangleData = _Delaunay.FlippingEdges(allPoints);
             triangleData = _Delaunay.PointByPoint(allPoints, triangleData);
-            
+
             //timer.Stop();
 
             //Delaunay takes 0.003 seconds for the house so is not the bottle neck
@@ -48,7 +48,8 @@ namespace Broccoli.HCGL
             //Modify the triangulation by adding the constraints to the delaunay triangulation
             triangleData = AddConstraints(triangleData, hull, shouldRemoveTriangles, timer);
 
-            if (holes != null) {
+            if (holes != null)
+            {
                 foreach (List<MyVector2> hole in holes)
                 {
                     triangleData = AddConstraints(triangleData, hole, shouldRemoveTriangles, timer);
@@ -85,7 +86,7 @@ namespace Broccoli.HCGL
             //The mesh has holes because we remove triangles while adding constraints one-by-one
             //so maybe better to remove triangles after we added all constraints...
             HashSet<HalfEdge2> edges = triangleData.edges;
-         
+
 
             //The steps numbering is from the report
             //Step 1. Loop over each constrained edge. For each of these edges, do steps 2-4 
@@ -317,7 +318,7 @@ namespace Broccoli.HCGL
         //
         // Find which triangles are within a constraint
         //
-       
+
         public static HashSet<HalfEdgeFace2> FindTrianglesWithinConstraint(HalfEdgeData2 triangleData, List<MyVector2> constraints)
         {
             HashSet<HalfEdgeFace2> trianglesToDelete = new HashSet<HalfEdgeFace2>();
@@ -337,10 +338,10 @@ namespace Broccoli.HCGL
             {
                 if (!trianglesToCheck.Contains(e.face))
                 {
-                    trianglesToCheck.Enqueue(e.face);                    
+                    trianglesToCheck.Enqueue(e.face);
                 }
             }
-            
+
 
             //Step 2. Find the rest of the triangles within the constraint by using a flood-fill algorithm
             int safety = 0;
@@ -558,12 +559,12 @@ namespace Broccoli.HCGL
             }
 
 
-            
+
             //Step2. Walk around p1 until we find a triangle with an edge that intersects with the edge p1-p2
-           
+
 
             //Step3. March from one triangle to the next in the general direction of p2
-           
+
         }
 
 

@@ -17,7 +17,7 @@ namespace Broccoli.HCGL.MeshAlgorithms
             if (resolution < 3)
             {
                 Debug.Log("You cant make a circle with less than 3 points! FailFish");
-                
+
                 return null;
             }
 
@@ -158,7 +158,7 @@ namespace Broccoli.HCGL.MeshAlgorithms
             for (int i = 0; i < points.Count; i++)
             {
                 MyVector2 p = points[i];
-            
+
                 //First point = special case if the lines are not connected
                 if (i == 0 && !isConnected)
                 {
@@ -189,7 +189,7 @@ namespace Broccoli.HCGL.MeshAlgorithms
                     MyVector2 p_after = points[MathUtility.ClampListIndex(i + 1, points.Count)];
 
                     MyVector2 pTop = GetIntersectionPoint(p_before, p, p_after, halfWidth, isTopPoint: true);
-                    
+
                     MyVector2 pBottom = GetIntersectionPoint(p_before, p, p_after, halfWidth, isTopPoint: false);
 
 
@@ -266,7 +266,7 @@ namespace Broccoli.HCGL.MeshAlgorithms
 
                 return intersectionPoint;
             }
-            else 
+            else
             {
                 //Now we can calculate where the plane starts
                 MyVector2 beforePlanePos = b + beforeNormal * halfWidth * normalDirFactor;
@@ -345,7 +345,7 @@ namespace Broccoli.HCGL.MeshAlgorithms
             MyVector2 arrowBottom_R = arrowBottom + lineNormal * arrowSize * 0.5f;
             MyVector2 arrowBottom_L = arrowBottom - lineNormal * arrowSize * 0.5f;
 
-            Triangle2 arrowTipTriangle = new Triangle2(p2 , arrowBottom_R, arrowBottom_L);
+            Triangle2 arrowTipTriangle = new Triangle2(p2, arrowBottom_R, arrowBottom_L);
 
             arrowTriangles.Add(arrowTipTriangle);
 

@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
                 playerVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
         }
-        
+
         playerVelocity.y += gravity * Time.deltaTime;
         characterController.Move((moveDirection * currentMoveSpeed + playerVelocity) * Time.deltaTime);
 
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         pitch = Mathf.Clamp(pitch, -90f, 90f);
         playerCamera.transform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
 
-       
+
     }
 
     private void ToggleCrouch()
@@ -91,12 +91,12 @@ public class PlayerController : MonoBehaviour
         if (isCrouching)
         {
             characterController.height = standingHeight;
-            playerCamera.transform.localPosition = new Vector3(0, standingHeight / 2, 0);
+            // playerCamera.transform.localPosition = new Vector3(0, standingHeight / 2, 0);
         }
         else
         {
             characterController.height = crouchHeight;
-            playerCamera.transform.localPosition = new Vector3(0, crouchHeight / 2, 0);
+            //playerCamera.transform.localPosition = new Vector3(0, crouchHeight / 2, 0);
         }
 
         isCrouching = !isCrouching;

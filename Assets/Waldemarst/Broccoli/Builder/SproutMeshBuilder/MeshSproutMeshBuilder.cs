@@ -13,30 +13,36 @@ namespace Broccoli.Builder
         public Vector3 meshPivot = Vector3.zero;
         public Quaternion meshOrientation = Quaternion.identity;
         private static int _id = 0;
-        public Dictionary<Hash128, Mesh> _meshes = new Dictionary<Hash128, Mesh> ();
+        public Dictionary<Hash128, Mesh> _meshes = new Dictionary<Hash128, Mesh>();
         #endregion
 
         #region Abstract
-        public override void SetParams (string jsonParams){
+        public override void SetParams(string jsonParams)
+        {
             throw new System.NotImplementedException();
         }
-        public override Mesh GetMesh () {
-            Hash128 hash = GetMeshHash (srcMesh, meshScale, meshPivot, meshOrientation);
-            if (_meshes.ContainsKey (hash)) {
-                return _meshes [hash];
-            } else {
-                Mesh mesh = GetMesh (srcMesh, meshScale, meshPivot, meshOrientation);
-                _meshes.Add (hash, mesh);
+        public override Mesh GetMesh()
+        {
+            Hash128 hash = GetMeshHash(srcMesh, meshScale, meshPivot, meshOrientation);
+            if (_meshes.ContainsKey(hash))
+            {
+                return _meshes[hash];
+            }
+            else
+            {
+                Mesh mesh = GetMesh(srcMesh, meshScale, meshPivot, meshOrientation);
+                _meshes.Add(hash, mesh);
                 return mesh;
             }
         }
-        public override void Clear () {
-            _meshes.Clear ();
+        public override void Clear()
+        {
+            _meshes.Clear();
         }
         #endregion
 
         #region Mesh Processing
-        public static Mesh GetMesh (
+        public static Mesh GetMesh(
             Mesh srcMesh,
             Vector3 meshScale,
             Vector3 meshPivot,
@@ -46,40 +52,42 @@ namespace Broccoli.Builder
             if (srcMesh == null) return null;
 
             // Create mesh.
-            Mesh mesh = Object.Instantiate<Mesh> (srcMesh);
+            Mesh mesh = Object.Instantiate<Mesh>(srcMesh);
 
             // Normals.
-            if (mesh.normals.Length == 0) mesh.RecalculateNormals ();
+            if (mesh.normals.Length == 0) mesh.RecalculateNormals();
 
             // Tangents.
-            if (mesh.tangents.Length == 0) mesh.RecalculateTangents ();
+            if (mesh.tangents.Length == 0) mesh.RecalculateTangents();
 
-            mesh.RecalculateBounds ();
+            mesh.RecalculateBounds();
 
             // UVs.
-            if (mesh.uv.Length == 0) mesh.SetUVs (0, new Vector4[mesh.vertexCount]);
+            if (mesh.uv.Length == 0) mesh.SetUVs(0, new Vector4[mesh.vertexCount]);
 
             // Apply scale, pivot and rotation.
-            Broccoli.Utils.MeshJob meshJob = new Broccoli.Utils.MeshJob (false);
+            Broccoli.Utils.MeshJob meshJob = new Broccoli.Utils.MeshJob(false);
             Vector3 meshBound = mesh.bounds.size;
-            Vector3 offset = new Vector3 (meshBound.x * meshPivot.x, meshBound.y * meshPivot.y, meshBound.z * meshPivot.z);
-            meshJob.SetTargetMesh (mesh);
-            meshJob.AddTransform (0, mesh.vertexCount, offset, meshScale, meshOrientation);
+            Vector3 offset = new Vector3(meshBound.x * meshPivot.x, meshBound.y * meshPivot.y, meshBound.z * meshPivot.z);
+            meshJob.SetTargetMesh(mesh);
+            meshJob.AddTransform(0, mesh.vertexCount, offset, meshScale, meshOrientation);
 
-            meshJob.ExecuteJob ();
+            meshJob.ExecuteJob();
 
             // UV2s.
             Vector4[] uv2s = new Vector4[mesh.vertexCount];
             float maxLength = 0f;
             int vertexCount = mesh.vertexCount;
             Vector3[] vertices = mesh.vertices;
-            for (int i = 0; i < vertexCount; i++) {
-                if (vertices [i].magnitude > maxLength) maxLength = vertices [i].magnitude;
+            for (int i = 0; i < vertexCount; i++)
+            {
+                if (vertices[i].magnitude > maxLength) maxLength = vertices[i].magnitude;
             }
-            for (int i = 0; i < vertexCount; i++) {
-                uv2s [i] = new Vector4 (vertices [i].magnitude / maxLength, vertices [i].magnitude / maxLength, 0f, _id);
+            for (int i = 0; i < vertexCount; i++)
+            {
+                uv2s[i] = new Vector4(vertices[i].magnitude / maxLength, vertices[i].magnitude / maxLength, 0f, _id);
             }
-            mesh.SetUVs (1, uv2s);
+            mesh.SetUVs(1, uv2s);
             /*
 
             // Vertices and UV2.
@@ -118,7 +126,8 @@ namespace Broccoli.Builder
 
             return mesh;
         }
-        public static void SetIdData (int id) {
+        public static void SetIdData(int id)
+        {
             _id = id;
         }
         /// <summary>
@@ -129,11 +138,12 @@ namespace Broccoli.Builder
         /// <param name="pivot">Pivot to apply to the mesh.</param>
         /// <param name="orientation">Rotation to apply to the mesh after pivot offset and scaling.</param>
         /// <returns>Hash for the mesh.</returns>
-        private Hash128 GetMeshHash (Mesh mesh, Vector3 scale, Vector3 pivot, Quaternion orientation) {
-            string paramsStr = string.Format ("mesh_{0}_{1}_{2}_{3}",
-                mesh.ToString (), scale.ToString (), meshPivot.ToString (), orientation.ToString ());
-            Debug.Log ("paramsStr: " + paramsStr);
-            return Hash128.Compute (paramsStr);
+        private Hash128 GetMeshHash(Mesh mesh, Vector3 scale, Vector3 pivot, Quaternion orientation)
+        {
+            string paramsStr = string.Format("mesh_{0}_{1}_{2}_{3}",
+                mesh.ToString(), scale.ToString(), meshPivot.ToString(), orientation.ToString());
+            Debug.Log("paramsStr: " + paramsStr);
+            return Hash128.Compute(paramsStr);
         }
         #endregion
     }

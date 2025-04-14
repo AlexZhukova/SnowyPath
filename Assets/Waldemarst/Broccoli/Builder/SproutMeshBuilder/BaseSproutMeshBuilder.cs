@@ -22,16 +22,16 @@ namespace Broccoli.Builder
         /// Set the parameters for this builder from a json string.
         /// </summary>
         /// <param name="jsonParams">Parameters in JSON format.</param>
-        public abstract void SetParams (string jsonParams);
+        public abstract void SetParams(string jsonParams);
         /// <summary>
         /// Creates a mesh for this builder.
         /// </summary>
         /// <returns>Mesh.</returns>
-        public abstract Mesh GetMesh ();
+        public abstract Mesh GetMesh();
         /// <summary>
         /// Clear this builder variables.
         /// </summary>
-        public abstract void Clear ();
+        public abstract void Clear();
         #endregion
     }
 }

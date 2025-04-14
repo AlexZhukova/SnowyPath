@@ -13,7 +13,7 @@ public class TriggerArea : MonoBehaviour
         {
             triggerEnterEvent?.Invoke();
         }
-        
+
     }
     private void OnTriggerExit(Collider other)
     {

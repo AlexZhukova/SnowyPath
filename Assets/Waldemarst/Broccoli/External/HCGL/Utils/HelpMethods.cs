@@ -33,6 +33,6 @@ namespace Broccoli.HCGL
             triangles = new HashSet<Triangle2>(trianglesList);
 
             return triangles;
-        }       
+        }
     }
 }

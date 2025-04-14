@@ -110,7 +110,7 @@ namespace Broccoli.HCGL
             {
                 return;
             }
-            
+
             for (int i = 1; i < points.Count; i++)
             {
                 MyVector3 p = points[i];

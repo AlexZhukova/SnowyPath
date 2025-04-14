@@ -11,7 +11,8 @@ public class BranchShaperAttribute : Attribute
     public readonly string name;
     public readonly bool enabled;
 
-    public BranchShaperAttribute (int id, string name, int order = 0, bool enabled = true) {
+    public BranchShaperAttribute(int id, string name, int order = 0, bool enabled = true)
+    {
         this.id = id;
         this.order = order;
         this.name = name;

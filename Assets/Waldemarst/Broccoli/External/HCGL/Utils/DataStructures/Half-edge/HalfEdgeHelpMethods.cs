@@ -152,7 +152,7 @@ namespace Broccoli.HCGL
 
                 MyVector2 eGoingTo = e.v.position;
                 MyVector2 eGoingFrom = e.prevEdge.v.position;
-            
+
                 foreach (HalfEdge2 eOpposite in newEdges)
                 {
                     if (e == eOpposite || eOpposite.oppositeEdge != null)
@@ -210,7 +210,7 @@ namespace Broccoli.HCGL
             {
                 e_old.oppositeEdge.oppositeEdge = e_1;
             }
-            
+
             //The other new edges will find the opposite in a loop when we have created all new edges
             newEdges.Add(e_2);
             newEdges.Add(e_3);

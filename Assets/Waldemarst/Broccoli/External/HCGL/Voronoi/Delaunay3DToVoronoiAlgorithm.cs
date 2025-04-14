@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Broccoli.HCGL
 {
-    public static class Delaunay3DToVoronoiAlgorithm 
+    public static class Delaunay3DToVoronoiAlgorithm
     {
         //Generate a Voronoi diagram in 3d space given a Delaunay triangulation in 3d space
         public static HashSet<VoronoiCell3> GenerateVoronoiDiagram(HalfEdgeData3 delaunayTriangulation)
@@ -55,7 +55,7 @@ namespace Broccoli.HCGL
                     continue;
                 }
 
-            
+
                 addedSites.Add(v.position);
 
                 //This vertex is a cite pos in the voronoi diagram
@@ -67,7 +67,7 @@ namespace Broccoli.HCGL
                 //So to generate the voronoi cell, we just rotate clock-wise around each vertex in the delaunay triangulation
 
                 HalfEdge3 currentEdge = v.edge;
-            
+
                 int safety = 0;
 
                 while (true)
@@ -102,7 +102,7 @@ namespace Broccoli.HCGL
 
                     currentEdge = oppositeEdge;
 
-                
+
                     safety += 1;
 
                     if (safety > 10000)
@@ -116,6 +116,6 @@ namespace Broccoli.HCGL
 
             return voronoiDiagram;
         }
-        
+
     }
 }

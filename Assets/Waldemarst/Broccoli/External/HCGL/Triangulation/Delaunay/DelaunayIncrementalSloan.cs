@@ -23,7 +23,7 @@ namespace Broccoli.HCGL
                 return null;
             }
 
-            
+
 
             //Step 1.Normalize the points to the range(0 - 1), which assumes we have more than 1 point
             //Is not being done here, we assume the points are already normalized
@@ -49,7 +49,7 @@ namespace Broccoli.HCGL
             //Change to half-edge data structure
             _TransformBetweenDataStructures.Triangle2ToHalfEdge2(triangles, triangulationData);
 
-            
+
 
             //Step 4. Loop over each point we want to insert and do Steps 5-7
 
@@ -139,7 +139,7 @@ namespace Broccoli.HCGL
                 MyVector2 a = edgeToTest.v.position;
                 MyVector2 b = edgeToTest.prevEdge.v.position;
                 MyVector2 c = edgeToTest.nextEdge.v.position;
-                
+
                 //abc are here counter-clockwise
                 if (DelaunayMethods.ShouldFlipEdgeStable(a, b, c, p))
                 {
@@ -217,7 +217,7 @@ namespace Broccoli.HCGL
             //The super triangle doesnt exists anymore because we have split it into many new triangles
             //But we can use its vertices to figure out which new triangles (or faces belonging to the triangle) 
             //we should delete
-        
+
             HashSet<HalfEdgeFace2> triangleFacesToDelete = new HashSet<HalfEdgeFace2>();
 
             //Loop through all vertices belongin to the triangulation

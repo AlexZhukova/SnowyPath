@@ -19,7 +19,7 @@ namespace Broccoli.HCGL
         {
             this.posA = posA;
             this.posB = posB;
-            
+
             this.handlePos = handlePos;
         }
 

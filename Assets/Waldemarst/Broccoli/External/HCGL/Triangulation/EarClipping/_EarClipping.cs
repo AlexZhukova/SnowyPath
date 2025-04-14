@@ -28,7 +28,7 @@ namespace Broccoli.HCGL
                 return null;
             }
 
-           
+
 
 
             //Step -1. Merge the holes with the points on the hull into one big polygon with invisible edges between the holes and the hull
@@ -61,7 +61,7 @@ namespace Broccoli.HCGL
             }
 
             //Debug.Log("Number of vertices: " + CountLinkedVertices(verticesLinked[0]));
-            
+
 
 
             //Step 1. Find:
@@ -73,7 +73,7 @@ namespace Broccoli.HCGL
             HashSet<LinkedVertex> reflectVerts = new HashSet<LinkedVertex>();
 
             foreach (LinkedVertex v in verticesLinked)
-            {            
+            {
                 bool isConvex = IsVertexConvex(v);
 
                 if (isConvex)
@@ -137,14 +137,14 @@ namespace Broccoli.HCGL
                 //Try to flip this triangle according to Delaunay triangulation
                 if (optimizeTriangles)
                 {
-                    OptimizeTriangle(t, triangulation);    
+                    OptimizeTriangle(t, triangulation);
                 }
                 else
                 {
                     triangulation.Add(t);
                 }
 
-                
+
 
                 //Check if we have found all triangles
                 //This should also prevent us from getting stuck in an infinite loop
@@ -503,14 +503,14 @@ namespace Broccoli.HCGL
             while (true)
             {
                 currentVertex = currentVertex.nextLinkedVertex;
-            
+
                 if (currentVertex == startVertex)
                 {
                     break;
                 }
-            
+
                 counter += 1;
-            
+
                 if (counter > 50000)
                 {
                     Debug.Log("Stuck in infinite loop!");

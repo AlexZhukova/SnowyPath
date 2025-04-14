@@ -11,112 +11,114 @@ using Broccoli.NodeEditorFramework.Utilities;
 
 namespace Broccoli.NodeEditorFramework
 {
-	public class NodeEditorUserCache
-	{
-		public NodeCanvas nodeCanvas;
-		public NodeEditorState editorState;
-		public void AssureCanvas () { if (nodeCanvas == null) LoadCache (); if (nodeCanvas == null) NewNodeCanvas (); if (editorState == null) NewEditorState (); }
+    public class NodeEditorUserCache
+    {
+        public NodeCanvas nodeCanvas;
+        public NodeEditorState editorState;
+        public void AssureCanvas() { if (nodeCanvas == null) LoadCache(); if (nodeCanvas == null) NewNodeCanvas(); if (editorState == null) NewEditorState(); }
 
-		public NodeCanvasTypeData typeData;
+        public NodeCanvasTypeData typeData;
 
-		#if EDITOR_CACHE_ASSET
+#if EDITOR_CACHE_ASSET
 		private const bool cacheWorkingCopy = false;
-		#else
-		private const bool cacheWorkingCopy = true;
-		public static int cacheIntervalSec = 60;
-		private double lastCacheTime;
-		#endif
-		private bool useCache;
-		private string _cachePath = null;
-		private const string MainEditorStateIdentifier = "MainEditorState";
-		private string lastSessionPath { get { return _cachePath + "/LastSession.asset"; } }
+#else
+        private const bool cacheWorkingCopy = true;
+        public static int cacheIntervalSec = 60;
+        private double lastCacheTime;
+#endif
+        private bool useCache;
+        private string _cachePath = null;
+        private const string MainEditorStateIdentifier = "MainEditorState";
+        private string lastSessionPath { get { return _cachePath + "/LastSession.asset"; } }
 
-		public string openedCanvasPath = "";
+        public string openedCanvasPath = "";
 
-		public NodeEditorUserCache (NodeCanvas loadedCanvas)
-		{
-			useCache = false;
-			SetCanvas (loadedCanvas);
-		}
+        public NodeEditorUserCache(NodeCanvas loadedCanvas)
+        {
+            useCache = false;
+            SetCanvas(loadedCanvas);
+        }
 
-		public NodeEditorUserCache ()
-		{
-			useCache = false;
-		}
+        public NodeEditorUserCache()
+        {
+            useCache = false;
+        }
 
-		public bool isUsingCache {
-			get { return useCache; }
-		}
+        public bool isUsingCache
+        {
+            get { return useCache; }
+        }
 
-		public string cachePath {
-			get { return _cachePath; }
-		}
+        public string cachePath
+        {
+            get { return _cachePath; }
+        }
 
-		#if UNITY_EDITOR
-		public NodeEditorUserCache (string CachePath, NodeCanvas loadedCanvas)
-		{
-			useCache = true;
-			_cachePath = CachePath;
-			SetCanvas (loadedCanvas);
-		}
+#if UNITY_EDITOR
+        public NodeEditorUserCache(string CachePath, NodeCanvas loadedCanvas)
+        {
+            useCache = true;
+            _cachePath = CachePath;
+            SetCanvas(loadedCanvas);
+        }
 
-		public NodeEditorUserCache (string CachePath)
-		{
-			useCache = true;
-			_cachePath = CachePath;
-		}
-		#endif
+        public NodeEditorUserCache(string CachePath)
+        {
+            useCache = true;
+            _cachePath = CachePath;
+        }
+#endif
 
-		#region Cache
+        #region Cache
 
-		public void SetupCacheEvents () 
-		{ 
-			#if UNITY_EDITOR
-			if (!useCache)
-				return;
+        public void SetupCacheEvents()
+        {
+#if UNITY_EDITOR
+            if (!useCache)
+                return;
 
-			#if EDITOR_CACHE_ASSET
+#if EDITOR_CACHE_ASSET
 			// Add new objects to the cache save file
 			NodeEditorCallbacks.OnAddNode -= SaveNewNode;
 			NodeEditorCallbacks.OnAddNode += SaveNewNode;
 			NodeEditorCallbacks.OnAddNodeKnob -= SaveNewNodeKnob;
 			NodeEditorCallbacks.OnAddNodeKnob += SaveNewNodeKnob;
-			#else
-			UnityEditor.EditorApplication.update -= CheckCacheUpdate;
-			UnityEditor.EditorApplication.update += CheckCacheUpdate;
-			lastCacheTime = UnityEditor.EditorApplication.timeSinceStartup;
-			#endif
+#else
+            UnityEditor.EditorApplication.update -= CheckCacheUpdate;
+            UnityEditor.EditorApplication.update += CheckCacheUpdate;
+            lastCacheTime = UnityEditor.EditorApplication.timeSinceStartup;
+#endif
 
-			LoadCache ();
-			#endif
-		}
+            LoadCache();
+#endif
+        }
 
-		public void ClearCacheEvents () 
-		{
-			#if UNITY_EDITOR && EDITOR_CACHE_ASSET
+        public void ClearCacheEvents()
+        {
+#if UNITY_EDITOR && EDITOR_CACHE_ASSET
 			NodeEditorCallbacks.OnAddNode -= SaveNewNode;
 			NodeEditorCallbacks.OnAddNodeKnob -= SaveNewNodeKnob;
-			#elif UNITY_EDITOR
-			RecreateCache ();
-			UnityEditor.EditorApplication.update -= CheckCacheUpdate;
-			#endif
-		}
+#elif UNITY_EDITOR
+            RecreateCache();
+            UnityEditor.EditorApplication.update -= CheckCacheUpdate;
+#endif
+        }
 
-		#if UNITY_EDITOR && !EDITOR_CACHE_ASSET
-		private void CheckCacheUpdate () 
-		{
-			if (UnityEditor.EditorApplication.timeSinceStartup-lastCacheTime > cacheIntervalSec)
-			{
-				if (editorState.dragUserID == "" && editorState.connectOutput == null && GUIUtility.hotControl <= 0 && !OverlayGUI.HasPopupControl ())
-				{ // Only save when the user currently does not perform an action that could be interrupted by the save
-					lastCacheTime = UnityEditor.EditorApplication.timeSinceStartup;
-					RecreateCache ();
-				}
-			}
-		}
-		#endif
+#if UNITY_EDITOR && !EDITOR_CACHE_ASSET
+        private void CheckCacheUpdate()
+        {
+            if (UnityEditor.EditorApplication.timeSinceStartup - lastCacheTime > cacheIntervalSec)
+            {
+                if (editorState.dragUserID == "" && editorState.connectOutput == null && GUIUtility.hotControl <= 0 && !OverlayGUI.HasPopupControl())
+                { // Only save when the user currently does not perform an action that could be interrupted by the save
+                    lastCacheTime = UnityEditor.EditorApplication.timeSinceStartup;
+                    RecreateCache();
+                }
+            }
+        }
+#endif
 
-		#if UNITY_EDITOR && EDITOR_CACHE_ASSET
+#if UNITY_EDITOR && EDITOR_CACHE_ASSET
 
 		private void SaveNewNode (Node node) 
 		{
@@ -166,88 +168,88 @@ namespace Broccoli.NodeEditorFramework
 			UpdateCacheFile ();
 		}
 
-		#endif
+#endif
 
-		/// <summary>
-		/// Creates a new cache save file for the currently loaded canvas 
-		/// Only called when a new canvas is created or loaded
-		/// </summary>
-		private void RecreateCache () 
-		{
-			#if UNITY_EDITOR
-			if (!useCache)
-				return;
-			DeleteCache ();
-			SaveCache ();
-			#endif
-		}
+        /// <summary>
+        /// Creates a new cache save file for the currently loaded canvas 
+        /// Only called when a new canvas is created or loaded
+        /// </summary>
+        private void RecreateCache()
+        {
+#if UNITY_EDITOR
+            if (!useCache)
+                return;
+            DeleteCache();
+            SaveCache();
+#endif
+        }
 
-		/// <summary>
-		/// Creates a new cache save file for the currently loaded canvas 
-		/// Only called when a new canvas is created or loaded
-		/// </summary>
-		private void SaveCache () 
-		{
-			#if UNITY_EDITOR
-			if (!useCache)
-				return;
-			if (nodeCanvas.GetType () == typeof(NodeCanvas))
-				return;
-			UnityEditor.EditorUtility.SetDirty (nodeCanvas);
-			if (editorState != null)
-				UnityEditor.EditorUtility.SetDirty (editorState);
-			#if !EDITOR_CACHE_ASSET
-			lastCacheTime = UnityEditor.EditorApplication.timeSinceStartup;
-			#endif
-			nodeCanvas.editorStates = new NodeEditorState[] { editorState };
-			if (nodeCanvas.livesInScene)
-				NodeEditorSaveManager.SaveSceneNodeCanvas ("lastSession", ref nodeCanvas, cacheWorkingCopy);
-			else
-				NodeEditorSaveManager.SaveNodeCanvas (lastSessionPath, nodeCanvas, cacheWorkingCopy, true);
+        /// <summary>
+        /// Creates a new cache save file for the currently loaded canvas 
+        /// Only called when a new canvas is created or loaded
+        /// </summary>
+        private void SaveCache()
+        {
+#if UNITY_EDITOR
+            if (!useCache)
+                return;
+            if (nodeCanvas.GetType() == typeof(NodeCanvas))
+                return;
+            UnityEditor.EditorUtility.SetDirty(nodeCanvas);
+            if (editorState != null)
+                UnityEditor.EditorUtility.SetDirty(editorState);
+#if !EDITOR_CACHE_ASSET
+            lastCacheTime = UnityEditor.EditorApplication.timeSinceStartup;
+#endif
+            nodeCanvas.editorStates = new NodeEditorState[] { editorState };
+            if (nodeCanvas.livesInScene)
+                NodeEditorSaveManager.SaveSceneNodeCanvas("lastSession", ref nodeCanvas, cacheWorkingCopy);
+            else
+                NodeEditorSaveManager.SaveNodeCanvas(lastSessionPath, nodeCanvas, cacheWorkingCopy, true);
 
-			CheckCurrentCache ();
-			#endif
-		}
+            CheckCurrentCache();
+#endif
+        }
 
-		/// <summary>
-		/// Loads the canvas from the cache save file
-		/// Called whenever a reload was made
-		/// </summary>
-		private void LoadCache () 
-		{
-			#if UNITY_EDITOR
-			if (!useCache)
-			{
-				NewNodeCanvas ();
-				return;
-			}
-			// Try to load the NodeCanvas
-			if (
-				(!File.Exists (lastSessionPath) || (nodeCanvas = NodeEditorSaveManager.LoadNodeCanvas (lastSessionPath, cacheWorkingCopy)) == null) &&	// Check for asset cache
-				(nodeCanvas = NodeEditorSaveManager.LoadSceneNodeCanvas ("lastSession", cacheWorkingCopy)) == null)										// Check for scene cache
-			{
-				NewNodeCanvas ();
-				return;
-			}
+        /// <summary>
+        /// Loads the canvas from the cache save file
+        /// Called whenever a reload was made
+        /// </summary>
+        private void LoadCache()
+        {
+#if UNITY_EDITOR
+            if (!useCache)
+            {
+                NewNodeCanvas();
+                return;
+            }
+            // Try to load the NodeCanvas
+            if (
+                (!File.Exists(lastSessionPath) || (nodeCanvas = NodeEditorSaveManager.LoadNodeCanvas(lastSessionPath, cacheWorkingCopy)) == null) &&    // Check for asset cache
+                (nodeCanvas = NodeEditorSaveManager.LoadSceneNodeCanvas("lastSession", cacheWorkingCopy)) == null)                                      // Check for scene cache
+            {
+                NewNodeCanvas();
+                return;
+            }
 
-			// Fetch the associated MainEditorState
-			editorState = NodeEditorSaveManager.ExtractEditorState (nodeCanvas, MainEditorStateIdentifier);
-			#if EDITOR_CACHE_ASSET
+            // Fetch the associated MainEditorState
+            editorState = NodeEditorSaveManager.ExtractEditorState(nodeCanvas, MainEditorStateIdentifier);
+#if EDITOR_CACHE_ASSET
 			if (!nodeCanvas.livesInScene && !UnityEditor.AssetDatabase.Contains (editorState))
 				NodeEditorSaveManager.AddSubAsset (editorState, lastSessionPath);
-			#endif
+#endif
 
 
-			CheckCurrentCache ();
-			UpdateCanvasInfo ();
-			nodeCanvas.TraverseAll ();
-			NodeEditor.RepaintClients ();
-			#endif
-		}
-		
-		private void CheckCurrentCache () 
-		{
-			#if UNITY_EDITOR && EDITOR_CACHE_ASSET
+            CheckCurrentCache();
+            UpdateCanvasInfo();
+            nodeCanvas.TraverseAll();
+            NodeEditor.RepaintClients();
+#endif
+        }
+
+        private void CheckCurrentCache()
+        {
+#if UNITY_EDITOR && EDITOR_CACHE_ASSET
 			if (!useCache)
 				return;
 			if (nodeCanvas.livesInScene)
@@ -257,172 +259,172 @@ namespace Broccoli.NodeEditorFramework
 			}
 			else if (UnityEditor.AssetDatabase.GetAssetPath (nodeCanvas) != lastSessionPath)
 				Debug.LogError ("Cache system error: Current asset canvas is not saved as the temporary cache asset!");
-			#elif UNITY_EDITOR
-			if (!useCache)
-				return;
-			if (nodeCanvas.livesInScene)
-			{
-				if (NodeEditorSaveManager.FindOrCreateSceneSave ("lastSession").savedNodeCanvas == null)
-					RecreateCache ();
-			}
-			else if (UnityEditor.AssetDatabase.LoadAssetAtPath<NodeCanvas> (lastSessionPath) == null)
-				RecreateCache ();
-			#endif
-		}
-		
-		private void DeleteCache () 
-		{
-			#if UNITY_EDITOR
-			if (!useCache)
-				return;
-			UnityEditor.AssetDatabase.DeleteAsset (lastSessionPath);
-			UnityEditor.AssetDatabase.Refresh ();
-			NodeEditorSaveManager.DeleteSceneNodeCanvas ("lastSession");
-			#endif
-		}
+#elif UNITY_EDITOR
+            if (!useCache)
+                return;
+            if (nodeCanvas.livesInScene)
+            {
+                if (NodeEditorSaveManager.FindOrCreateSceneSave("lastSession").savedNodeCanvas == null)
+                    RecreateCache();
+            }
+            else if (UnityEditor.AssetDatabase.LoadAssetAtPath<NodeCanvas>(lastSessionPath) == null)
+                RecreateCache();
+#endif
+        }
 
-		private void UpdateCacheFile () 
-		{
-			#if UNITY_EDITOR
-			if (!useCache)
-				return;
-			UnityEditor.EditorUtility.SetDirty (nodeCanvas);
-			UnityEditor.AssetDatabase.SaveAssets ();
-			UnityEditor.AssetDatabase.Refresh ();
-			#endif
-		}
+        private void DeleteCache()
+        {
+#if UNITY_EDITOR
+            if (!useCache)
+                return;
+            UnityEditor.AssetDatabase.DeleteAsset(lastSessionPath);
+            UnityEditor.AssetDatabase.Refresh();
+            NodeEditorSaveManager.DeleteSceneNodeCanvas("lastSession");
+#endif
+        }
 
-		#endregion
+        private void UpdateCacheFile()
+        {
+#if UNITY_EDITOR
+            if (!useCache)
+                return;
+            UnityEditor.EditorUtility.SetDirty(nodeCanvas);
+            UnityEditor.AssetDatabase.SaveAssets();
+            UnityEditor.AssetDatabase.Refresh();
+#endif
+        }
 
-		#region Save/Load
+        #endregion
 
-		public void SetCanvas (NodeCanvas canvas)
-		{
-			if (nodeCanvas != canvas)
-			{
-				canvas.Validate (true);
-				nodeCanvas = canvas;
-				editorState = NodeEditorSaveManager.ExtractEditorState (nodeCanvas, MainEditorStateIdentifier);
-				RecreateCache ();
-				UpdateCanvasInfo ();
-				nodeCanvas.TraverseAll ();
-				NodeEditor.RepaintClients ();
-			}
-		}
+        #region Save/Load
 
-		/// <summary>
-		/// Saves the mainNodeCanvas and it's associated mainEditorState as an asset at path
-		/// </summary>
-		public void SaveSceneNodeCanvas (string path) 
-		{
-			nodeCanvas.editorStates = new NodeEditorState[] { editorState };
-			bool switchedToScene = !nodeCanvas.livesInScene;
-			NodeEditorSaveManager.SaveSceneNodeCanvas (path, ref nodeCanvas, true);
-			editorState = NodeEditorSaveManager.ExtractEditorState (nodeCanvas, MainEditorStateIdentifier);
-			if (switchedToScene)
-				RecreateCache ();
-			NodeEditor.RepaintClients ();
-		}
+        public void SetCanvas(NodeCanvas canvas)
+        {
+            if (nodeCanvas != canvas)
+            {
+                canvas.Validate(true);
+                nodeCanvas = canvas;
+                editorState = NodeEditorSaveManager.ExtractEditorState(nodeCanvas, MainEditorStateIdentifier);
+                RecreateCache();
+                UpdateCanvasInfo();
+                nodeCanvas.TraverseAll();
+                NodeEditor.RepaintClients();
+            }
+        }
 
-		/// <summary>
-		/// Loads the mainNodeCanvas and it's associated mainEditorState from an asset at path
-		/// </summary>
-		public void LoadSceneNodeCanvas (string path) 
-		{
-			// Try to load the NodeCanvas
-			if ((nodeCanvas = NodeEditorSaveManager.LoadSceneNodeCanvas (path, true)) == null)
-			{
-				NewNodeCanvas ();
-				return;
-			}
-			editorState = NodeEditorSaveManager.ExtractEditorState (nodeCanvas, MainEditorStateIdentifier);
+        /// <summary>
+        /// Saves the mainNodeCanvas and it's associated mainEditorState as an asset at path
+        /// </summary>
+        public void SaveSceneNodeCanvas(string path)
+        {
+            nodeCanvas.editorStates = new NodeEditorState[] { editorState };
+            bool switchedToScene = !nodeCanvas.livesInScene;
+            NodeEditorSaveManager.SaveSceneNodeCanvas(path, ref nodeCanvas, true);
+            editorState = NodeEditorSaveManager.ExtractEditorState(nodeCanvas, MainEditorStateIdentifier);
+            if (switchedToScene)
+                RecreateCache();
+            NodeEditor.RepaintClients();
+        }
 
-			openedCanvasPath = path;
-			RecreateCache ();
-			UpdateCanvasInfo ();
-			nodeCanvas.TraverseAll ();
-			NodeEditor.RepaintClients ();
-		}
+        /// <summary>
+        /// Loads the mainNodeCanvas and it's associated mainEditorState from an asset at path
+        /// </summary>
+        public void LoadSceneNodeCanvas(string path)
+        {
+            // Try to load the NodeCanvas
+            if ((nodeCanvas = NodeEditorSaveManager.LoadSceneNodeCanvas(path, true)) == null)
+            {
+                NewNodeCanvas();
+                return;
+            }
+            editorState = NodeEditorSaveManager.ExtractEditorState(nodeCanvas, MainEditorStateIdentifier);
 
-		/// <summary>
-		/// Saves the mainNodeCanvas and it's associated mainEditorState as an asset at path
-		/// </summary>
-		public void SaveNodeCanvas (string path) 
-		{
-			nodeCanvas.editorStates = new NodeEditorState[] { editorState };
-			bool switchedToFile = nodeCanvas.livesInScene;
-			NodeEditorSaveManager.SaveNodeCanvas (path, nodeCanvas, true);
-			if (switchedToFile)
-				RecreateCache ();
-			NodeEditor.RepaintClients ();
-		}
+            openedCanvasPath = path;
+            RecreateCache();
+            UpdateCanvasInfo();
+            nodeCanvas.TraverseAll();
+            NodeEditor.RepaintClients();
+        }
 
-		/// <summary>
-		/// Loads the mainNodeCanvas and it's associated mainEditorState from an asset at path
-		/// </summary>
-		public void LoadNodeCanvas (string path) 
-		{
-			// Try to load the NodeCanvas
-			if (!File.Exists (path) || (nodeCanvas = NodeEditorSaveManager.LoadNodeCanvas (path, true)) == null)
-			{
-				NewNodeCanvas ();
-				return;
-			}
-			editorState = NodeEditorSaveManager.ExtractEditorState (nodeCanvas, MainEditorStateIdentifier);
+        /// <summary>
+        /// Saves the mainNodeCanvas and it's associated mainEditorState as an asset at path
+        /// </summary>
+        public void SaveNodeCanvas(string path)
+        {
+            nodeCanvas.editorStates = new NodeEditorState[] { editorState };
+            bool switchedToFile = nodeCanvas.livesInScene;
+            NodeEditorSaveManager.SaveNodeCanvas(path, nodeCanvas, true);
+            if (switchedToFile)
+                RecreateCache();
+            NodeEditor.RepaintClients();
+        }
 
-			openedCanvasPath = path;
-			RecreateCache ();
-			UpdateCanvasInfo ();
-			nodeCanvas.TraverseAll ();
-			NodeEditor.RepaintClients ();
-		}
+        /// <summary>
+        /// Loads the mainNodeCanvas and it's associated mainEditorState from an asset at path
+        /// </summary>
+        public void LoadNodeCanvas(string path)
+        {
+            // Try to load the NodeCanvas
+            if (!File.Exists(path) || (nodeCanvas = NodeEditorSaveManager.LoadNodeCanvas(path, true)) == null)
+            {
+                NewNodeCanvas();
+                return;
+            }
+            editorState = NodeEditorSaveManager.ExtractEditorState(nodeCanvas, MainEditorStateIdentifier);
 
-		/// <summary>
-		/// Creates and loads a new NodeCanvas
-		/// </summary>
-		public void NewNodeCanvas (Type canvasType = null) 
-		{
-			nodeCanvas = NodeCanvas.CreateCanvas (canvasType);
-			//EditorPrefs.SetString ("NodeEditorLastSession", "New Canvas");
-			NewEditorState ();
-			openedCanvasPath = "";
-			RecreateCache ();
-			UpdateCanvasInfo ();
-		}
+            openedCanvasPath = path;
+            RecreateCache();
+            UpdateCanvasInfo();
+            nodeCanvas.TraverseAll();
+            NodeEditor.RepaintClients();
+        }
 
-		/// <summary>
-		/// Creates a new EditorState for the current NodeCanvas
-		/// </summary>
-		public void NewEditorState () 
-		{
-			editorState = ScriptableObject.CreateInstance<NodeEditorState> ();
-			editorState.canvas = nodeCanvas;
-			editorState.name = MainEditorStateIdentifier;
-			nodeCanvas.editorStates = new NodeEditorState[] { editorState };
-			#if UNITY_EDITOR
-			UnityEditor.EditorUtility.SetDirty (nodeCanvas);
-			#endif
-		}
+        /// <summary>
+        /// Creates and loads a new NodeCanvas
+        /// </summary>
+        public void NewNodeCanvas(Type canvasType = null)
+        {
+            nodeCanvas = NodeCanvas.CreateCanvas(canvasType);
+            //EditorPrefs.SetString ("NodeEditorLastSession", "New Canvas");
+            NewEditorState();
+            openedCanvasPath = "";
+            RecreateCache();
+            UpdateCanvasInfo();
+        }
 
-		#endregion
+        /// <summary>
+        /// Creates a new EditorState for the current NodeCanvas
+        /// </summary>
+        public void NewEditorState()
+        {
+            editorState = ScriptableObject.CreateInstance<NodeEditorState>();
+            editorState.canvas = nodeCanvas;
+            editorState.name = MainEditorStateIdentifier;
+            nodeCanvas.editorStates = new NodeEditorState[] { editorState };
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(nodeCanvas);
+#endif
+        }
 
-		public void ConvertCanvasType (Type newType)
-		{
-			NodeCanvas canvas = NodeCanvasManager.ConvertCanvasType (nodeCanvas, newType);
-			if (canvas != nodeCanvas)
-			{
-				nodeCanvas = canvas;
-				RecreateCache ();
-				UpdateCanvasInfo ();
-				nodeCanvas.TraverseAll ();
-				NodeEditor.RepaintClients ();
-			}
-		}
+        #endregion
 
-		private void UpdateCanvasInfo () 
-		{
-			typeData = NodeCanvasManager.getCanvasTypeData (nodeCanvas);
-		}
-	}
+        public void ConvertCanvasType(Type newType)
+        {
+            NodeCanvas canvas = NodeCanvasManager.ConvertCanvasType(nodeCanvas, newType);
+            if (canvas != nodeCanvas)
+            {
+                nodeCanvas = canvas;
+                RecreateCache();
+                UpdateCanvasInfo();
+                nodeCanvas.TraverseAll();
+                NodeEditor.RepaintClients();
+            }
+        }
+
+        private void UpdateCanvasInfo()
+        {
+            typeData = NodeCanvasManager.getCanvasTypeData(nodeCanvas);
+        }
+    }
 
 }

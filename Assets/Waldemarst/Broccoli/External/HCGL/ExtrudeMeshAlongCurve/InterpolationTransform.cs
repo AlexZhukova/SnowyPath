@@ -8,7 +8,7 @@ namespace Broccoli.HCGL
     public class InterpolationTransform
     {
         public MyVector3 position;
-        
+
         public MyQuaternion orientation;
 
         public InterpolationTransform(MyVector3 position, MyQuaternion orientation)
@@ -98,7 +98,7 @@ namespace Broccoli.HCGL
         //
         // Alternative 1.5. Similar to Alternative 1, but we know the up vector at both the start and end position
         //
-        
+
         public static InterpolationTransform GetTransform_InterpolateBetweenUpVectors(
             _Curve curve, float t, MyVector3 upRefStart, MyVector3 upRefEnd)
         {
@@ -260,7 +260,7 @@ namespace Broccoli.HCGL
         //Not defined for a single point, you always need a previous transform 
         //public static InterpolationTransform InterpolationTransform GetTransform_RotationMinimisingFrame()
         //{
-            
+
         //}
 
 
@@ -302,7 +302,7 @@ namespace Broccoli.HCGL
             }
 
             return transforms;
-        }        
+        }
 
 
 
@@ -311,8 +311,8 @@ namespace Broccoli.HCGL
         //
 
         public MyVector3 Forward => orientation.Forward;
-        public MyVector3 Right   => orientation.Right;
-        public MyVector3 Up      => orientation.Up;
+        public MyVector3 Right => orientation.Right;
+        public MyVector3 Up => orientation.Up;
 
 
 

@@ -13,7 +13,7 @@ namespace Broccoli.HCGL
     //- When cutting triangles - always cut edges from outside -> inside. If you cut one from outside and the other from inside, the result is not the same because of floating point issues, which may cause trouble when finding opposite edges
     //- Use the cut-edge to analyze how many holes we have. If we have just one hole, we don't need to flood-fill and thus we don't need to convert the mesh to the half-edge data structure. But it might be problematic to merge small edges if we are not on the half-edge data structure...
     //- Input should be half-edge, not mesh. If we want to cut a mesh multiple times, then we would have to convert from mesh to half-edge multiple times. Converting to half-edge is a bottleneck. 
-    public static class CutMeshWithPlane 
+    public static class CutMeshWithPlane
     {
         //Should return null if the mesh couldn't be cut because it doesn't intersect with the plane
         //Otherwise it should return two new meshes
@@ -60,7 +60,7 @@ namespace Broccoli.HCGL
                     if (ArePointsOnOneSideOfPlane(new List<MyVector3>(corners), cutPlaneGlobal))
                     {
                         Debug.Log("This mesh can't be cut because its AABB doesnt intersect with the plane");
-                    
+
                         return null;
                     }
                 }
@@ -86,8 +86,8 @@ namespace Broccoli.HCGL
 
 
             //Transform the plane from global space to local space of the mesh
-            MyVector3 planePosLocal = MyVector3.ToMyVector3 (meshTrans.InverseTransformPoint(MyVector3.ToVector3(cutPlaneGlobal.pos)));
-            MyVector3 planeNormalLocal = MyVector3.ToMyVector3 (meshTrans.InverseTransformDirection(MyVector3.ToVector3(cutPlaneGlobal.normal)));
+            MyVector3 planePosLocal = MyVector3.ToMyVector3(meshTrans.InverseTransformPoint(MyVector3.ToVector3(cutPlaneGlobal.pos)));
+            MyVector3 planeNormalLocal = MyVector3.ToMyVector3(meshTrans.InverseTransformDirection(MyVector3.ToVector3(cutPlaneGlobal.normal)));
 
             Plane3 cutPlane = new Plane3(planePosLocal, planeNormalLocal);
 
@@ -143,7 +143,7 @@ namespace Broccoli.HCGL
                 else
                 {
                     //We get 6 cases where each vertex is on its own in front or in the back of the plane
-                    
+
                     //p1 is outside
                     if (is_p1_front && !is_p2_front && !is_p3_front)
                     {
@@ -256,7 +256,7 @@ namespace Broccoli.HCGL
             {
                 return;
             }
-        
+
             foreach (Hole hole in allHoles)
             {
                 HalfEdge3 holeEdgeI = hole.holeEdgeI;
@@ -338,11 +338,11 @@ namespace Broccoli.HCGL
                     else
                     {
                         Debug.Log($"This mesh has {numberOfIslands} islands");
-                    
+
                         break;
                     }
                 }
-            
+
                 HalfEdgeFace3 f = facesToFloodFrom.Dequeue();
 
                 facesOnThisIsland.Add(f);
@@ -372,7 +372,7 @@ namespace Broccoli.HCGL
 
                     //Here we could mabe save all edges with no opposite, meaning its an edge at the hole 
                 }
-                
+
 
                 safety += 1;
 
@@ -601,7 +601,7 @@ namespace Broccoli.HCGL
                     else
                     {
                         Debug.Log($"The mesh has {allHoles.Count} holes");
-                    
+
                         break;
                     }
                 }
@@ -783,7 +783,7 @@ namespace Broccoli.HCGL
 
         //Is a list of points on one side of a plane?
         public static bool ArePointsOnOneSideOfPlane(List<MyVector3> points, Plane3 plane)
-        {        
+        {
             //First check the first point
             bool isInFront = _Geometry.IsPointOutsidePlane(points[0], plane);
 

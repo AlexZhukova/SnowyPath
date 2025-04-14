@@ -55,7 +55,7 @@ namespace Broccoli.HCGL
             float qem1 = CalculateQEM(v1, Q1, Q2);
             float qem2 = CalculateQEM(v2, Q1, Q2);
             float qem3 = CalculateQEM(v3, Q1, Q2);
-           
+
             //Find which vertex minimized the qem
             if (qem1 < qem2 && qem1 < qem3)
             {

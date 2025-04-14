@@ -8,7 +8,8 @@ public class SproutProcessorAttribute : Attribute
 {
     public readonly int id;
 
-    public SproutProcessorAttribute (int id) {
+    public SproutProcessorAttribute(int id)
+    {
         this.id = id;
     }
 }

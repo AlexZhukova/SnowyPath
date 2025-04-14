@@ -49,7 +49,7 @@ namespace Broccoli.Serialization
         public override bool Equals(Object obj)
         {
             SerializableSystemType temp = obj as SerializableSystemType;
-            if ((object) temp == null)
+            if ((object)temp == null)
             {
                 return false;
             }
@@ -72,7 +72,7 @@ namespace Broccoli.Serialization
             }
 
             // If one is null, but not both, return false.
-            if (((object) a == null) || ((object) b == null))
+            if (((object)a == null) || ((object)b == null))
             {
                 return false;
             }

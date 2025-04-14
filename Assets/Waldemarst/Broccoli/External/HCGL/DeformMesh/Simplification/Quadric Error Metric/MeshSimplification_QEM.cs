@@ -77,8 +77,8 @@ namespace Broccoli.HCGL
 
             //timer.Stop();
 
-         
-           
+
+
             //
             // Select all valid pairs that can be contracted
             //
@@ -97,7 +97,7 @@ namespace Broccoli.HCGL
             Dictionary<HalfEdge3, QEM_Edge> halfEdge_QEM_Lookup = new Dictionary<HalfEdge3, QEM_Edge>();
 
             foreach (HalfEdge3 halfEdge in validPairs)
-            {            
+            {
                 MyVector3 p1 = halfEdge.prevEdge.v.position;
                 MyVector3 p2 = halfEdge.v.position;
 
@@ -139,7 +139,7 @@ namespace Broccoli.HCGL
                 if (halfEdgeMeshData.faces.Count <= 4)
                 {
                     Debug.Log($"Cant contract more than {i} edges");
-                
+
                     break;
                 }
 
@@ -159,7 +159,7 @@ namespace Broccoli.HCGL
                 {
                     //This edge wasn't contracted so don't add it to iteration
                     i -= 1;
-                
+
                     continue;
                 }
 
@@ -239,7 +239,7 @@ namespace Broccoli.HCGL
                 //Those edges are the same edges that points to the new vertex and goes from the new vertex
                 //timer.Start();
                 foreach (HalfEdge3 edgeToV in edgesPointingToNewVertex)
-                {                
+                {
                     //The edge going from the new vertex is the next edge of the edge going to the vertex
                     HalfEdge3 edgeFromV = edgeToV.nextEdge;
 

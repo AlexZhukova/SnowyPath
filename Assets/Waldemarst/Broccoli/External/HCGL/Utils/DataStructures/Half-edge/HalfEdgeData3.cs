@@ -17,7 +17,7 @@ namespace Broccoli.HCGL
     public class HalfEdgeData3
     {
         //Should be called verts because have the same #letters as faces, edges, so makes it pretty
-        public HashSet<HalfEdgeVertex3> verts; 
+        public HashSet<HalfEdgeVertex3> verts;
 
         public HashSet<HalfEdgeFace3> faces;
 
@@ -275,7 +275,7 @@ namespace Broccoli.HCGL
         public MyMesh ConvertToMyMesh(string meshName, MyMesh.MeshStyle meshStyle)
         {
             MyMesh myMesh = new MyMesh(meshName);
-        
+
             //Loop through each triangle
             foreach (HalfEdgeFace3 f in faces)
             {
@@ -324,7 +324,7 @@ namespace Broccoli.HCGL
         //
         // We have faces, but we also want a list with vertices, edges, etc
         //
-        
+
         public static HalfEdgeData3 GenerateHalfEdgeDataFromFaces(HashSet<HalfEdgeFace3> faces)
         {
             HalfEdgeData3 meshData = new HalfEdgeData3();
@@ -526,7 +526,7 @@ namespace Broccoli.HCGL
                     {
                         continue;
                     }
-                
+
                     edgeToV.v.position = mergePos;
 
                     edgesPointingToVertex.Add(edgeToV);
@@ -710,7 +710,7 @@ namespace Broccoli.HCGL
         public List<HalfEdge3> GetEdges()
         {
             List<HalfEdge3> allEdges = new List<HalfEdge3>();
-        
+
             HalfEdge3 currentEdge = this.edge;
 
             int safety = 0;

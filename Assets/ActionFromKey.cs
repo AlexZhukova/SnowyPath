@@ -5,7 +5,7 @@ public class ActionFromKey : MonoBehaviour
 {
     [Tooltip("This keypress is being listened whenever this script is active")]
     public KeyCode interactionKey = KeyCode.E;
-    
+
     [Space(16)]
 
     [Tooltip("Activate this even every time key is pressed")]

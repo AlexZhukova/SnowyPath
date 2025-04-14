@@ -20,7 +20,7 @@ namespace Broccoli.HCGL
 
             //Step 2. Triangulate the convex hull
             HashSet<Triangle2> triangles = _TriangulatePoints.PointsOnConvexHull(pointsOnConvexHull, addColinearPoints: true);
-            
+
 
             //Step 3. From the points we should add, remove those that are already a part of the triangulation
             foreach (MyVector2 v in pointsOnConvexHull)

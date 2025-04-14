@@ -9,7 +9,8 @@ namespace Broccoli.Model
     /// Descriptor for a polygon area.
     /// </summary>
     [System.Serializable]
-    public class PolygonArea {
+    public class PolygonArea
+    {
         #region Vars
         /// <summary>
         /// Id of the instance.
@@ -46,7 +47,7 @@ namespace Broccoli.Model
         /// </summary>
         /// <typeparam name="Vector3">Point.</typeparam>
         /// <returns>List of points.</returns>
-        public List<Vector3> points = new List<Vector3> ();
+        public List<Vector3> points = new List<Vector3>();
         /// <summary>
         /// Saves the index to the last point of the convex polygon.
         /// </summary>
@@ -58,19 +59,19 @@ namespace Broccoli.Model
         /// <summary>
         /// Normals for this polygon mesh.
         /// </summary>
-        public List<Vector3> normals = new List<Vector3> ();
+        public List<Vector3> normals = new List<Vector3>();
         /// <summary>
         /// Tangents for this polygon mesh.
         /// </summary>
-        public List<Vector4> tangents = new List<Vector4> ();
+        public List<Vector4> tangents = new List<Vector4>();
         /// <summary>
         /// UV mapping.
         /// </summary>
-        public List<Vector4> uvs = new List<Vector4> ();
+        public List<Vector4> uvs = new List<Vector4>();
         /// <summary>
         /// Triangles for this poygon mesh.
         /// </summary>
-        public List<int> triangles = new List<int> ();
+        public List<int> triangles = new List<int>();
         /// <summary>
         /// AABB bounds.
         /// </summary>
@@ -94,50 +95,51 @@ namespace Broccoli.Model
         /// <typeparam name="System.Guid">Branch guid.</typeparam>
         /// <returns>List of branch guids.</returns>
         [System.NonSerialized]
-        public List<System.Guid> includes = new List<System.Guid> ();
+        public List<System.Guid> includes = new List<System.Guid>();
         /// <summary>
         /// Guids of the branches excluded in the polygon area.
         /// </summary>
         /// <typeparam name="System.Guid">Branch guid.</typeparam>
         /// <returns>List of branch guids.</returns>
         [System.NonSerialized]
-        public List<System.Guid> excludes = new List<System.Guid> ();
+        public List<System.Guid> excludes = new List<System.Guid>();
         /// <summary>
         /// Ids of the branches included in the polygon area.
         /// </summary>
         /// <typeparam name="int">Branch id.</typeparam>
         /// <returns>List of branch ids.</returns>
         [System.NonSerialized]
-        public List<int> includedBranchIds = new List<int> ();
+        public List<int> includedBranchIds = new List<int>();
         /// <summary>
         /// Ids of the branches excluded in the polygon area.
         /// </summary>
         /// <typeparam name="int">Branch id.</typeparam>
         /// <returns>List of branch ids.</returns>
         [System.NonSerialized]
-        public List<int> excludedBranchIds = new List<int> ();
-        #if BROCCOLI_DEVEL
+        public List<int> excludedBranchIds = new List<int>();
+#if BROCCOLI_DEVEL
         /// <summary>
         /// Points from the topology of the branches used to create the polygons.
         /// </summary>
         [System.NonSerialized]
         public List<Vector3> topoPoints = new List<Vector3> ();
-        #endif
+#endif
         #endregion
 
         #region Construction
         /// <summary>
         /// Private class constructor.
         /// </summary>
-        private PolygonArea () {}
+        private PolygonArea() { }
         /// <summary>
         /// Class contructor.
         /// </summary>
-        public PolygonArea (int branchDescriptorId, int fragmentIndex, int lod = 0) {
+        public PolygonArea(int branchDescriptorId, int fragmentIndex, int lod = 0)
+        {
             this.branchDescriptorId = branchDescriptorId;
             this.fragment = fragmentIndex;
             this.lod = lod;
-            id = GetCompundId (branchDescriptorId, fragmentIndex, lod);
+            id = GetCompundId(branchDescriptorId, fragmentIndex, lod);
         }
         #endregion
 
@@ -149,7 +151,8 @@ namespace Broccoli.Model
         /// <param name="fragment">Fragment for the polygon (from 0 to 9,999).</param>
         /// <param name="lod">LOD for the polygon (from 0 to 9).</param>
         /// <returns>Id for a polygon area instance.</returns>
-        public static int GetCompundId (int branchDescriptorId, int fragment, int lod = 0) {
+        public static int GetCompundId(int branchDescriptorId, int fragment, int lod = 0)
+        {
             return branchDescriptorId * 100000 + lod * 10000 + fragment;
         }
         #endregion
@@ -158,8 +161,9 @@ namespace Broccoli.Model
         /// <summary>
         /// Clone this instance.
         /// </summary>
-        public PolygonArea Clone () {
-            PolygonArea clone = new PolygonArea ();
+        public PolygonArea Clone()
+        {
+            PolygonArea clone = new PolygonArea();
             clone.id = id;
             clone.hash = hash;
             clone.scale = scale;
@@ -169,40 +173,49 @@ namespace Broccoli.Model
             clone.fragmentOffset = fragmentOffset;
             clone.lastConvexPointIndex = lastConvexPointIndex;
             clone.isNonConvexHull = isNonConvexHull;
-            for (int i = 0; i < points.Count; i++) {
-                clone.points.Add (points [i]);
+            for (int i = 0; i < points.Count; i++)
+            {
+                clone.points.Add(points[i]);
             }
-            for (int i = 0; i < normals.Count; i++) {
-                clone.normals.Add (normals [i]);
+            for (int i = 0; i < normals.Count; i++)
+            {
+                clone.normals.Add(normals[i]);
             }
-            for (int i = 0; i < uvs.Count; i++) {
-                clone.uvs.Add (uvs [i]);
+            for (int i = 0; i < uvs.Count; i++)
+            {
+                clone.uvs.Add(uvs[i]);
             }
-            for (int i = 0; i < tangents.Count; i++) {
-                clone.tangents.Add (tangents [i]);
+            for (int i = 0; i < tangents.Count; i++)
+            {
+                clone.tangents.Add(tangents[i]);
             }
-            for (int i = 0; i < triangles.Count; i++) {
-                clone.triangles.Add (triangles [i]);
+            for (int i = 0; i < triangles.Count; i++)
+            {
+                clone.triangles.Add(triangles[i]);
             }
             clone.aabb = aabb;
             clone.obb = obb;
             clone.obbAngle = obbAngle;
-            #if BROCCOLI_DEVEL
+#if BROCCOLI_DEVEL
             for (int i = 0; i < topoPoints.Count; i++) {
                 clone.topoPoints.Add (topoPoints [i]);
             }
-            #endif
-            for (int i = 0; i < includes.Count; i++) {
-                clone.includes.Add (includes [i]);
+#endif
+            for (int i = 0; i < includes.Count; i++)
+            {
+                clone.includes.Add(includes[i]);
             }
-            for (int i = 0; i < excludes.Count; i++) {
-                clone.excludes.Add (excludes [i]);
+            for (int i = 0; i < excludes.Count; i++)
+            {
+                clone.excludes.Add(excludes[i]);
             }
-            for (int i = 0; i < includedBranchIds.Count; i++) {
-                clone.includedBranchIds.Add (includedBranchIds [i]);
+            for (int i = 0; i < includedBranchIds.Count; i++)
+            {
+                clone.includedBranchIds.Add(includedBranchIds[i]);
             }
-            for (int i = 0; i < excludedBranchIds.Count; i++) {
-                clone.excludedBranchIds.Add (excludedBranchIds [i]);
+            for (int i = 0; i < excludedBranchIds.Count; i++)
+            {
+                clone.excludedBranchIds.Add(excludedBranchIds[i]);
             }
             return clone;
         }

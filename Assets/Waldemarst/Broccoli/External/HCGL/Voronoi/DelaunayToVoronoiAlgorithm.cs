@@ -42,9 +42,9 @@ namespace Broccoli.HCGL
                 //The circumcenter is also known as a voronoi vertex, which is a position in the diagram where we are equally
                 //close to the surrounding sites (= the corners ina voronoi cell)
                 MyVector2 voronoiVertex = _Geometry.CalculateCircleCenter(v1, v2, v3);
-                
+
                 //Debug.Log(voronoiVertex.x + " " + voronoiVertex.y);
-                
+
                 //We will generate a single edge belonging to this site
                 //Try means that this edge might not have an opposite and then we can't generate an edge
                 TryAddVoronoiEdgeFromTriangleEdge(e1, voronoiVertex, voronoiEdges);
