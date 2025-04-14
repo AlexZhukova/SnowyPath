@@ -58,7 +58,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SP MC rig|Run
-  m_Speed: 3.16
+  m_Speed: 2.44
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4943718229691473533}
