@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Debug.Log($"Horizontal: {horizontal}, Vertical: {vertical}");
+        //Debug.Log($"Horizontal: {horizontal}, Vertical: {vertical}");
 
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 moveDirection = transform.right * horizontal + transform.forward * vertical;
-        Debug.Log($"Movement Direction: {moveDirection}");
+        //Debug.Log($"Movement Direction: {moveDirection}");
 
         if (characterController.isGrounded)
         {
