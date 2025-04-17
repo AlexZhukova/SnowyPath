@@ -1,26 +1,39 @@
-using System.Collections.Generic;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Experimental.GraphView;
-using static Unity.Burst.Intrinsics.Arm;
 
 public class Inventory : MonoBehaviour
 {
-    public List<InventoryItem> inventory = new List<InventoryItem>();
+    public static event Action<List<InventoryItem>> OnInventoryChanged;
+
+    public List<InventoryItem> inventory = new List<InventoryItem>(6);
 
     private void OnEnable()
     {
         CItem.OnCItemCollected += Add;
     }
-    private void OnDisable()
-    {
-        CItem.OnCItemCollected -= Add;
-    }
-    public void Add(ItemData itemData)
 
+    public void Add(ItemData itemData)
     {
-        Debug.Log("You have collected new item");
+        if (itemData == null)
+        {
+            Debug.LogWarning("Attempted to add a null item to the inventory.");
+            return;
+        }
+
+        // Check for duplicates (optional, based on requirements)
+        if (inventory.Exists(item => item.ItemData == itemData))
+        {
+            Debug.Log("Item already exists in the inventory.");
+            return;
+        }
+
+        Debug.Log("You have collected a new item.");
         InventoryItem newItem = new InventoryItem(itemData);
         inventory.Add(newItem);
+
+        OnInventoryChanged?.Invoke(inventory);
+
     }
 }

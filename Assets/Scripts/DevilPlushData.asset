@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: DevilPlushData
   m_EditorClassIdentifier: 
   displayName: Demon Plush
-  description: 
+  description: I used to have same one, I wonder what this buddy is doing here? I
+    bet performing cuteness rituals!
   icon: {fileID: 21300000, guid: 803d7232d1abac640a035e77f818e847, type: 3}
