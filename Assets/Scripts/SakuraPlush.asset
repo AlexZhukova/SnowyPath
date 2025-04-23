@@ -15,4 +15,4 @@ MonoBehaviour:
   displayName: Sakura Plush
   description: I never heard of this characetr before, but it gives me a feeling
     it might be my favorite
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e68266bef7b70f24bb61f875d3fea76a, type: 3}
