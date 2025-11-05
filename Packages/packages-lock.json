@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.prenominal.realtimecsg": {
+      "version": "file:C:/Users/Alexanzh/Downloads/realtime-CSG-for-unity-master/realtime-CSG-for-unity-master",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

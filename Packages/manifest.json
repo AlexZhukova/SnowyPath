@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.prenominal.realtimecsg": "file:C:/Users/Alexanzh/Downloads/realtime-CSG-for-unity-master/realtime-CSG-for-unity-master",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.ai.navigation": "2.0.4",
     "com.unity.cinemachine": "3.1.2",
