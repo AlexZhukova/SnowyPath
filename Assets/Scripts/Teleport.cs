@@ -13,15 +13,12 @@ public class Teleport : MonoBehaviour
     {
         
     }
-    public Transform Destination;
-    public Transform player;
-
 
     public void TeleportPlayer()
     {
 
         {
-            player.transform.position = Destination.transform.position;
+            PlayerObject.Instance.transform.position = DeathAreaObject.Instance.transform.position;
         }
     }
 }

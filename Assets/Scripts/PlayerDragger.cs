@@ -3,12 +3,12 @@ using UnityEngine.AI;
 
 public class PlayerDragger : MonoBehaviour
 {
-public void PlayerDrag(Transform transform)
+public void PlayerDrag(Transform nottransform)
     {
         if (TryGetComponent<NavMeshAgent>(out var agent))
         {
             agent.enabled = true;
-            agent.SetDestination(transform.position);
+            agent.SetDestination(nottransform.position);
         }
     }
 }
