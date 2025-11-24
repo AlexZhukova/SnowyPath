@@ -8,6 +8,7 @@ TagManager:
   - Hand
   - OnlySeeRaycats
   - Head
+  - RecordingCamera
   layers:
   - Default
   - TransparentFX

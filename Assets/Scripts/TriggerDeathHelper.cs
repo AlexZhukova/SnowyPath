@@ -12,5 +12,6 @@ public void TriggerDeath()
         PlayerObject.Instance.GetComponent <NavMeshAgent>().enabled = true;
         SnowyObject.Instance.gameObject.SetActive(false);
         LynxwalkerObject.Instance.gameObject.SetActive(false);
+        FDeathscreenObject.Instance.GetComponent<MeshRenderer>().enabled = true;
     }
 }
